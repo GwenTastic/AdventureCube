@@ -9,9 +9,9 @@ This is a reference for localizing SugarCube's default UI text, in general, and 
 If you're simply looking to download ready-to-use localizations, see <a href="http://www.motoslave.net/sugarcube/2/#downloads">SugarCube's website</a> (under <em>Downloads &gt; Localizations</em>).
 </p>
 
-#### Since:
+#### History:
 
-* `v2.0.0`: Basic syntax.
+* `v2.0.0`: Introduced.
 * `v2.10.0`: Added `l10nStrings` object.  Deprecated `strings` object.
 
 #### A note about `strings` vs. `l10nStrings`
@@ -40,7 +40,7 @@ In use, replacement patterns are replaced recursively, so replacement strings ma
 **************************************************************************** -->
 ## Usage {#guide-localization-usage}
 
-Properties on the strings localization object (`l10nStrings`) may be set within your project's script section (Twine&nbsp;2: the Story JavaScript, Twine&nbsp;1/Twee: a `script`-tagged passage) to override the defaults.
+Properties on the strings localization object (`l10nStrings`) should be set within your project's JavaScript section (Twine&nbsp;2: the Story JavaScript; Twine&nbsp;1/Twee: a <code>script</code>-tagged passage) to override the defaults.
 
 For the template that should be used as the basis of localizations, see the [`locale/l10n-template.js` file @github.com](https://github.com/tmedwards/sugarcube-2/tree/develop/locale/).
 

@@ -22,7 +22,7 @@ When you have a situation where you're using a set of passages as some kind of m
 
 The most common way to resolve this arbitrarily long return issue is to use a bit of JavaScript to record the last non-menu passage the player visited into a story variable and then to create a link with that.
 
-For example, the code to record the last non-menu passage: (Twine&nbsp;2: the Story JavaScript, Twine&nbsp;1/Twee: a `script`-tagged passage)
+For example, you may use the following JavaScript code to record the last non-menu passage into the `$return` story variable: (Twine&nbsp;2: the Story JavaScript, Twine&nbsp;1/Twee: a `script`-tagged passage)
 
 ```
 $(document).on(':passagestart', function (ev) {
@@ -44,8 +44,8 @@ In your menu passages, your long return links will simply reference the `$return
 <<link "Return" $return>><</link>>
 ```
 
-<p role="note"><b>Note (Twine&nbsp;2):</b>
-Unfortunately, due to how the Twine&nbsp;2 automatic passage creation feature currently works, using the link markup form will cause a passage named <code>$return</code> to be created that will need to be deleted.  To avoid this problem, it's suggested that you use the separate argument form of <a href="#macros-macro-link"><code>&lt;&lt;link&gt;&gt;</code></a> in Twine&nbsp;2—as shown above.
+<p role="note" class="warning"><b>Warning (Twine&nbsp;2):</b>
+Due to how the Twine&nbsp;2 automatic passage creation feature currently works, using the link markup form will cause a passage named <code>$return</code> to be created that will need to be deleted.  To avoid this problem, it's suggested that you use the separate argument form of the <a href="#macros-macro-link"><code>&lt;&lt;link&gt;&gt;</code> macro</a> in Twine&nbsp;2—as shown above.
 </p>
 
 <!-- *********************************************************************** -->
@@ -54,7 +54,7 @@ Unfortunately, due to how the Twine&nbsp;2 automatic passage creation feature cu
 
 As a basic working definition, non-generic object types—a.k.a. classes—are instantiable objects whose own prototype is not `Object`—e.g., `Array` is a native non-generic object type.
 
-Most of the commonly used native non-generic object types are already fully compatible with and supported for use within story variables—e.g., `Array`, `Date`, `Map`, and `Set`.  Non-native/custom non-generic object types, on the other hand, must be made compatible to be successfully stored within story variables.
+Many of the commonly used native non-generic object types are already fully compatible with and supported for use within story variables—e.g., `Array`, `Date`, `Map`, and `Set`.  All other non-generic object types, on the other hand, must be made compatible to be successfully stored within story variables.
 
 Making custom non-generic object types fully compatible requires that two methods be added to their prototype, `.clone()` and `.toJSON()`, to support cloning—i.e., deep copying—instances of the type.
 
@@ -62,6 +62,10 @@ Making custom non-generic object types fully compatible requires that two method
 * The `.toJSON()` method needs to return a code string that when evaluated will return a clone of the instance.
 
 In both cases, since the end goal is roughly the same, this means creating a new instance of the base object type and populating it with clones of the original instance's data.  There is no one size fits all example for either of these methods because an instance's properties, and the data contained therein, are what determine what you need to do.
+
+<p role="note" class="see"><b>See Also:</b>
+The <a href="#methods-json-method-revivewrapper"><code>JSON.reviveWrapper()</code> method</a> for additional information on implementing the <code>.toJSON()</code> method.
+</p>
 
 #### Examples: *(not an exhaustive list)*
 

@@ -35,9 +35,9 @@ The <code>Fullscreen</code> API comes with some built-in limitations:
 
 Returns the current fullscreen element or, if fullscreen mode is not active, `null`.
 
-#### Since:
+#### History:
 
-* `v2.31.0`
+* `v2.31.0`: Introduced.
 
 #### Examples:
 
@@ -51,9 +51,9 @@ Fullscreen.element  → The current fullscreen element
 
 Returns whether fullscreen is both supported and enabled.
 
-#### Since:
+#### History:
 
-* `v2.31.0`
+* `v2.31.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -69,9 +69,9 @@ Fullscreen.isEnabled()  → Whether fullscreen mode is available
 
 Returns whether fullscreen mode is currently active.
 
-#### Since:
+#### History:
 
-* `v2.31.0`
+* `v2.31.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -91,9 +91,9 @@ Request that the browser enter fullscreen mode.
 <a href="#fullscreen-api-backgrounds">Backgrounds</a> and <a href="#fullscreen-api-limitations">limitations</a>.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.31.0`
+* `v2.31.0`: Introduced.
 
 #### Parameters:
 
@@ -135,9 +135,9 @@ Fullscreen.request({ navigationUI : "show" }, myElement);
 
 Request that the browser exit fullscreen mode.
 
-#### Since:
+#### History:
 
-* `v2.31.0`
+* `v2.31.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -154,9 +154,9 @@ Fullscreen.exit();
 
 Request that the browser toggle fullscreen mode—i.e., enter or exit as appropriate.
 
-#### Since:
+#### History:
 
-* `v2.31.0`
+* `v2.31.0`: Introduced.
 
 #### Parameters:
 
@@ -185,9 +185,9 @@ Fullscreen.toggle({ navigationUI : "show" }, myElement);
 
 Attaches fullscreen change event handlers.
 
-#### Since:
+#### History:
 
-* `v2.31.0`
+* `v2.31.0`: Introduced.
 
 #### Parameters:
 
@@ -220,9 +220,9 @@ Fullscreen.onChange(function (ev) {
 
 Removes fullscreen change event handlers.
 
-#### Since:
+#### History:
 
-* `v2.31.0`
+* `v2.31.0`: Introduced.
 
 #### Parameters:
 
@@ -263,9 +263,9 @@ Fullscreen.offChange(originalHandlerFn, myElement);
 
 Attaches fullscreen error event handlers.
 
-#### Since:
+#### History:
 
-* `v2.31.0`
+* `v2.31.0`: Introduced.
 
 #### Parameters:
 
@@ -298,9 +298,9 @@ Fullscreen.onError(function (ev) {
 
 Removes fullscreen error event handlers.
 
-#### Since:
+#### History:
 
-* `v2.31.0`
+* `v2.31.0`: Introduced.
 
 #### Parameters:
 

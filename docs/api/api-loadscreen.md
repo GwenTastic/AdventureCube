@@ -13,9 +13,9 @@ To simply add a delay to the dismissal of the loading screen to hide initial fla
 
 Acquires a loading screen lock and returns its ID.  Displays the loading screen, if necessary.
 
-#### Since:
+#### History:
 
-* `v2.15.0`
+* `v2.15.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -31,9 +31,9 @@ LoadScreen.lock()  → Locks the loading screen and returns the lock ID
 
 Releases the loading screen lock with the given ID.  Hides the loading screen, if no other locks exist.
 
-#### Since:
+#### History:
 
-* `v2.15.0`
+* `v2.15.0`: Introduced.
 
 #### Parameters:
 

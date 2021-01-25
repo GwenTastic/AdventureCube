@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /***********************************************************************************************************************
 
-	build.js (v1.4.15, 2020-03-29)
+	build.js (v1.4.18, 2020-11-08)
 		A Node.js-hosted build script for SugarCube.
 
 	Copyright © 2013–2020 Thomas Michael Edwards <thomasmedwards@gmail.com>. All rights reserved.
@@ -33,6 +33,7 @@ const CONFIG = {
 			'src/lib/simplestore/adapters/webstorage.js',
 			'src/lib/simplestore/adapters/cookie.js',
 			'src/lib/debugview.js',
+			'src/lib/nodetyper.js',
 			'src/lib/prngwrapper.js',
 			'src/lib/stylewrapper.js',
 			'src/lib/diff.js',
@@ -186,7 +187,7 @@ if (_opt.options.build) {
 
 	// Create the build ID file, if nonexistent.
 	if (!_fs.existsSync('.build')) {
-		writeFileContents('.build', 0);
+		writeFileContents('.build', '0');
 	}
 
 	// Get the version info and build metadata.
@@ -266,7 +267,7 @@ if (_opt.options.build) {
 	}
 
 	// Update the build ID.
-	writeFileContents('.build', version.build);
+	writeFileContents('.build', String(version.build));
 })();
 
 // That's all folks!
@@ -377,7 +378,7 @@ function compileJavaScript(filenameObj, options) {
 	const babelOpts = {
 		code     : true,
 		compact  : false,
-		presets  : ['es2015'],
+		presets  : ['env'],
 		filename : 'sugarcube.js'
 	};
 

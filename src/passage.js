@@ -127,7 +127,7 @@ var Passage = (() => { // eslint-disable-line no-unused-vars, no-var
 		// TODO: (v3) This should be → `get source`.
 		get text() {
 			if (this.element == null) { // lazy equality for null
-				const passage = Util.escape(this.title);
+				const passage = Util.escapeMarkup(this.title);
 				const mesg    = `${L10n.get('errorTitle')}: ${L10n.get('errorNonexistentPassage', { passage })}`;
 				return `<div class="error-view"><span class="error">${mesg}</span></div>`;
 			}
@@ -145,36 +145,28 @@ var Passage = (() => { // eslint-disable-line no-unused-vars, no-var
 		description() {
 			const descriptions = Config.passages.descriptions;
 
-			if (descriptions != null) { // lazy equality for null
-				switch (typeof descriptions) {
-				case 'boolean':
-					if (descriptions) {
-						return this.title;
-					}
-					break;
-
-				case 'object':
-					if (descriptions instanceof Map && descriptions.has(this.title)) {
-						return descriptions.get(this.title);
-					}
-					else if (descriptions.hasOwnProperty(this.title)) {
-						return descriptions[this.title];
-					}
-					break;
-
-				case 'function':
-					{
-						const result = descriptions.call(this);
-
-						if (result) {
-							return result;
-						}
-					}
-					break;
-
-				default:
-					throw new TypeError('Config.passages.descriptions must be a boolean, object, or function');
+			switch (typeof descriptions) {
+			case 'boolean':
+				if (descriptions) {
+					return this.title;
 				}
+				break;
+
+			case 'object':
+				if (descriptions.hasOwnProperty(this.title)) {
+					return descriptions[this.title];
+				}
+				break;
+
+			case 'function':
+				{
+					const result = descriptions.call(this);
+
+					if (result) {
+						return result;
+					}
+				}
+				break;
 			}
 
 			// Initialize the excerpt cache from the raw passage text, if necessary.
@@ -229,10 +221,18 @@ var Passage = (() => { // eslint-disable-line no-unused-vars, no-var
 		}
 
 		static getExcerptFromNode(node, count) {
+			if (DEBUG) { console.log(`[Passage.getExcerptFromNode(node=…, count=${count})]`, node); }
+
 			if (!node.hasChildNodes()) {
 				return '';
 			}
 
+			// WARNING: es5-shim's `<String>.trim()` can cause "too much recursion" errors
+			// here on very large strings (e.g., ≥40 KiB), at least in Firefox, for unknown
+			// reasons.
+			//
+			// To fix the issue, we're removed `\u180E` from es5-shim's whitespace pattern
+			// to prevent it from erroneously shimming `<String>.trim()` in the first place.
 			let excerpt = node.textContent.trim();
 
 			if (excerpt !== '') {
@@ -248,6 +248,8 @@ var Passage = (() => { // eslint-disable-line no-unused-vars, no-var
 		}
 
 		static getExcerptFromText(text, count) {
+			if (DEBUG) { console.log(`[Passage.getExcerptFromText(text=…, count=${count})]`, text); }
+
 			if (text === '') {
 				return '';
 			}

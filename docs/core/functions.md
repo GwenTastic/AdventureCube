@@ -13,9 +13,9 @@ Returns a deep copy of the given value.
 Only the primitives, generic objects, some JavaScript natives (specifically: <code>Array</code>, <code>Date</code>, <code>Map</code>, <code>RegExp</code>, and <code>Set</code>), and DOM node objects are supported by default.  Unsupported object types, either native or custom, will need to implement <code>.clone()</code> method to be properly supported by the <code>cone()</code> function—when called on such an object, it will simply defer to the local method; see the <a href="#guide-tips-non-generic-object-types"><em>Non-generic object types (a.k.a. classes)</em> guide</a> for more information.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters:
 
@@ -43,9 +43,9 @@ $bar.id  → Returns: 5
 
 Returns a random value from its given arguments.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters:
 
@@ -73,9 +73,13 @@ either($letters, $numerals)  → Returns a random value from the whole list—i.
 
 Removes the specified key, and its associated value, from the story metadata store.
 
-#### Since:
+<p role="note" class="see"><b>See Also:</b>
+<a href="#functions-function-memorize"><code>memorize()</code></a>, <a href="#functions-function-recall"><code>recall()</code></a>.
+</p>
 
-* `v2.29.0`
+#### History:
+
+* `v2.29.0`: Introduced.
 
 #### Parameters:
 
@@ -93,9 +97,9 @@ Removes the specified key, and its associated value, from the story metadata sto
 
 Returns whether the passage with the given title occurred within the story history.  If multiple passage titles are given, returns the logical-AND aggregate of the set—i.e., `true` if all were found, `false` if any were not found.
 
-#### Since:
+#### History:
 
-* `v2.7.0`
+* `v2.7.0`: Introduced.
 
 #### Parameters:
 
@@ -116,9 +120,9 @@ Returns whether the passage with the given title occurred within the story histo
 
 Returns the number of turns that have passed since the last instance of the passage with the given title occurred within the story history or `-1` if it does not exist.  If multiple passage titles are given, returns the lowest count (which can be `-1`).
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters:
 
@@ -145,12 +149,12 @@ Loading is done asynchronously at run time, so if the script must be available w
 </p>
 
 <p role="note"><b>Note:</b>
-A script section (Twine&nbsp;2: the Story JavaScript; Twine&nbsp;1/Twee: a <code>script</code>-tagged passage) is normally the best place to call <code>importScripts()</code>.
+Your project's JavaScript section (Twine&nbsp;2: the Story JavaScript; Twine&nbsp;1/Twee: a <code>script</code>-tagged passage) is normally the best place to call <code>importScripts()</code>.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.16.0`
+* `v2.16.0`: Introduced.
 
 #### Parameters:
 
@@ -233,12 +237,12 @@ Loading is done asynchronously at run time, so if the stylesheet must be availab
 </p>
 
 <p role="note"><b>Note:</b>
-A script section (Twine&nbsp;2: the Story JavaScript; Twine&nbsp;1/Twee: a <code>script</code>-tagged passage) is normally the best place to call <code>importStyles()</code>.
+Your project's JavaScript section (Twine&nbsp;2: the Story JavaScript; Twine&nbsp;1/Twee: a <code>script</code>-tagged passage) is normally the best place to call <code>importStyles()</code>.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.16.0`
+* `v2.16.0`: Introduced.
 
 #### Parameters:
 
@@ -314,9 +318,13 @@ The story metadata store <strong><em>is not</em></strong>, and should not be use
 This feature is largely incompatible with private browsing modes, which cause all in-browser storage mechanisms to either persist only for the lifetime of the browsing session or fail outright.
 </p>
 
-#### Since:
+<p role="note" class="see"><b>See Also:</b>
+<a href="#functions-function-forget"><code>forget()</code></a>, <a href="#functions-function-recall"><code>recall()</code></a>.
+</p>
 
-* `v2.29.0`
+#### History:
+
+* `v2.29.0`: Introduced.
 
 #### Parameters:
 
@@ -339,16 +347,16 @@ This feature is largely incompatible with private browsing modes, which cause al
 
 Returns the title of the active (present) passage.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters: *none*
 
 #### Examples:
 
 ```
-<<if passage() is "Café">>…the current passage is the Café passage…<</if>>
+<<if passage() is "Café">>…the active passage is the Café passage…<</if>>
 ```
 
 <!-- *********************************************************************** -->
@@ -357,9 +365,9 @@ Returns the title of the active (present) passage.
 
 Returns the title of the most recent previous passage whose title does not match that of the active passage or an empty string, if there is no such passage.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -382,9 +390,9 @@ Returns a pseudo-random whole number (integer) within the range of the given bou
 By default, it uses <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random"><code>Math.random()</code></a> as its source of (non-deterministic) randomness, however, when the seedable PRNG has been enabled, via <a href="#state-api-method-prng-init"><code>State.prng.init()</code></a>, it uses that (deterministic) seeded PRNG instead.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters:
 
@@ -408,9 +416,9 @@ Returns a pseudo-random decimal number (floating-point) within the range of the 
 By default, it simply returns non-deterministic results from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random"><code>Math.random()</code></a>, however, when the seedable PRNG has been enabled, via <a href="#state-api-method-prng-init"><code>State.prng.init()</code></a>, it returns deterministic results from the seeded PRNG instead.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters:
 
@@ -430,9 +438,13 @@ randomFloat(1.0, 6.0)  → Returns a number in the range 1.0–5.9999999…
 
 Returns the value associated with the specified key from the story metadata store or, if no such key exists, the specified default value, if any.
 
-#### Since:
+<p role="note" class="see"><b>See Also:</b>
+<a href="#functions-function-forget"><code>forget()</code></a>, <a href="#functions-function-memorize"><code>memorize()</code></a>.
+</p>
 
-* `v2.29.0`
+#### History:
+
+* `v2.29.0`: Introduced.
 
 #### Parameters:
 
@@ -455,9 +467,9 @@ Returns the value associated with the specified key from the story metadata stor
 
 Renders the selected passage into the target element, replacing any existing content, and returns the element.  If no passages are found and default text is specified, it will be used instead.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters:
 
@@ -485,18 +497,18 @@ setPageElement(myElement, "MyPassage");
 
 Returns a new array consisting of all of the tags of the given passages.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters:
 
-* **`passages`:** (optional, *string* | *string array*) The passages from which to collect tags.  May be a list or an array of passages.  If omitted, will default to the current passage.
+* **`passages`:** (optional, *string* | *string array*) The passages from which to collect tags.  May be a list or an array of passages.  If omitted, will default to the active (present) passage—included passages do not count for this purpose; e.g., passages pulled in via `<<include>>`, `PassageHeader`, etc.
 
 #### Examples:
 
 ```
-<<if tags().includes("forest")>>…the current passage is part of the forest…<</if>>
+<<if tags().includes("forest")>>…the active passage is part of the forest…<</if>>
 <<if tags("Lonely Glade").includes("forest")>>…the Lonely Glade passage is part of the forest…<</if>>
 ```
 
@@ -506,9 +518,9 @@ Returns a new array consisting of all of the tags of the given passages.
 
 Returns a reference to the current temporary variables store (equivalent to: [`State.temporary`](#state-api-getter-temporary)).  This is only really useful within pure JavaScript code, as within TwineScript you may simply access temporary variables natively.
 
-#### Since:
+#### History:
 
-* `v2.19.0`
+* `v2.19.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -527,9 +539,9 @@ if (temporary().selection === 'Zagnut Bar') {
 
 Returns the number of milliseconds that have passed since the current passage was rendered to the page.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -556,9 +568,9 @@ or [[stand your ground|Eaten by a grue]]?
 
 Returns the total number (count) of played turns currently in effect—i.e., the number of played moments up to the present moment; future (rewound/undone) moments are not included within the total.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -574,9 +586,9 @@ Returns the total number (count) of played turns currently in effect—i.e., the
 
 Returns a reference to the active (present) story variables store (equivalent to: [`State.variables`](#state-api-getter-variables)).  This is only really useful within pure JavaScript code, as within TwineScript you may simply access story variables natively.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -595,9 +607,9 @@ if (variables().hasGoldenKey) {
 
 Returns the number of times that the passage with the given title occurred within the story history.  If multiple passage titles are given, returns the lowest count.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters:
 
@@ -618,9 +630,9 @@ Returns the number of times that the passage with the given title occurred withi
 
 Returns the number of passages within the story history that are tagged with all of the given tags.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters:
 

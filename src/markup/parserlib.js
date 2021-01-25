@@ -8,7 +8,7 @@
 ***********************************************************************************************************************/
 /*
 	global Config, DebugView, EOF, Engine, Lexer, Macro, MacroContext, Patterns, Scripting, State, Story, Template,
-	       Wikifier, toStringOrDefault, throwError
+	       Wikifier, stringFrom, throwError
 */
 /* eslint "no-param-reassign": [ 2, { "props" : false } ] */
 
@@ -137,7 +137,7 @@
 					if (macro) {
 						let payload = null;
 
-						if (macro.hasOwnProperty('tags')) {
+						if (typeof macro.tags !== 'undefined') {
 							payload = this.parseBody(w, macro);
 
 							if (!payload) {
@@ -158,7 +158,7 @@
 							/*
 								New-style macros.
 							*/
-							if (macro.hasOwnProperty('_MACRO_API')) {
+							if (typeof macro._MACRO_API !== 'undefined') {
 								/*
 									Add the macro's execution context to the context chain.
 								*/
@@ -223,7 +223,7 @@
 						else {
 							return throwError(
 								w.output,
-								`macro <<${name}>> handler function ${macro.hasOwnProperty('handler') ? 'is not a function' : 'does not exist'}`,
+								`macro <<${name}>> handler function ${typeof macro.handler === 'undefined' ? 'does not exist' : 'is not a function'}`,
 								w.source.slice(matchStart, w.nextMatch)
 							);
 						}
@@ -304,6 +304,7 @@
 				const tagArgs   = this.working.arguments;
 				const tagBegin  = this.working.index;
 				const tagEnd    = w.nextMatch;
+				const hasArgs   = tagArgs.trim() !== '';
 
 				switch (tagName) {
 				case openTag:
@@ -312,10 +313,20 @@
 
 				case closeAlt:
 				case closeTag:
+					if (hasArgs) {
+						// Skip over malformed closing tags and throw.
+						w.nextMatch = tagBegin + 2 + tagName.length;
+						throw new Error(`malformed closing tag: "${tagSource}"`);
+					}
 					--opened;
 					break;
 
 				default:
+					if (hasArgs && (tagName.startsWith('/') || tagName.startsWith('end'))) {
+						// Skip over malformed alien closing tags.
+						this.lookahead.lastIndex = w.nextMatch = tagBegin + 2 + tagName.length;
+						continue;
+					}
 					if (opened === 1 && bodyTags) {
 						for (let i = 0, iend = bodyTags.length; i < iend; ++i) {
 							if (tagName === bodyTags[i]) {
@@ -374,13 +385,13 @@
 		},
 
 		skipArgs(macro, tagName) {
-			if (macro.hasOwnProperty('skipArgs')) {
+			if (typeof macro.skipArgs !== 'undefined') {
 				const sa = macro.skipArgs;
 
 				return typeof sa === 'boolean' && sa || Array.isArray(sa) && sa.includes(tagName);
 			}
 			/* legacy */
-			else if (macro.hasOwnProperty('skipArg0')) {
+			else if (typeof macro.skipArg0 !== 'undefined') {
 				return macro.skipArg0 && macro.name === tagName;
 			}
 			/* /legacy */
@@ -1024,15 +1035,17 @@
 				$variable["property"]
 				$variable['property']
 				$variable[$indexOrPropertyVariable]
+
+			NOTE: I really do not like how the initial bit of the regexp matches.
 		*/
 		name     : 'nakedVariable',
 		profiles : ['core'],
 		match    : `${Patterns.variable}(?:(?:\\.${Patterns.identifier})|(?:\\[\\d+\\])|(?:\\["(?:\\\\.|[^"\\\\])+"\\])|(?:\\['(?:\\\\.|[^'\\\\])+'\\])|(?:\\[${Patterns.variable}\\]))*`,
 
 		handler(w) {
-			const result = toStringOrDefault(State.getVar(w.matchText), null);
+			const result = State.getVar(w.matchText);
 
-			if (result === null) {
+			if (result == null) { // lazy equality for null
 				jQuery(document.createTextNode(w.matchText)).appendTo(w.output);
 			}
 			else {
@@ -1041,7 +1054,7 @@
 						? new DebugView(w.output, 'variable', w.matchText, w.matchText) // Debug view setup.
 						: w
 					).output,
-					result
+					stringFrom(result)
 				);
 			}
 		}
@@ -1065,7 +1078,7 @@
 			switch (typeof template) {
 			case 'function':
 				try {
-					result = toStringOrDefault(template.call({ name }), null);
+					result = stringFrom(template.call({ name }));
 				}
 				catch (ex) {
 					return throwError(
@@ -1645,8 +1658,8 @@
 		*/
 		name      : 'htmlTag',
 		profiles  : ['core'],
-		match     : '<\\w+(?:\\s+[^\\u0000-\\u001F\\u007F-\\u009F\\s"\'>\\/=]+(?:\\s*=\\s*(?:"[^"]*?"|\'[^\']*?\'|[^\\s"\'=<>`]+))?)*\\s*\\/?>',
-		tagRe     : /^<(\w+)/,
+		match     : `<${Patterns.htmlTagName}(?:\\s+[^\\u0000-\\u001F\\u007F-\\u009F\\s"'>\\/=]+(?:\\s*=\\s*(?:"[^"]*?"|'[^']*?'|[^\\s"'=<>\`]+))?)*\\s*\\/?>`,
+		tagRe     : new RegExp(`^<(${Patterns.htmlTagName})`),
 		mediaTags : ['audio', 'img', 'source', 'track', 'video'], // NOTE: The `<picture>` element should not be in this list.
 		nobrTags  : ['audio', 'colgroup', 'datalist', 'dl', 'figure', 'meter', 'ol', 'optgroup', 'picture', 'progress', 'ruby', 'select', 'table', 'tbody', 'tfoot', 'thead', 'tr', 'ul', 'video'],
 		voidTags  : ['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'menuitem', 'meta', 'param', 'source', 'track', 'wbr'],

@@ -13,7 +13,7 @@ Except where noted, all markup has been available since <code>v2.0.0</code>.
 **************************************************************************** -->
 ## Naked Variable {#markup-naked-variable}
 
-In addition to using one of the print macros ([`<<print>>`](#macros-macro-print), [`<<=>>`](#macros-macro-equal), [`<<->>`](#macros-macro-hyphen)) to print the values of TwineScript variables, SugarCube's naked variable markup allows printing them simply by including them within your normal passage text—i.e., variables in passage text are interpolated into their values.
+In addition to using one of the print macros ([`<<print>>`](#macros-macro-print), [`<<=>>`](#macros-macro-equal), [`<<->>`](#macros-macro-hyphen)) to print the values of TwineScript variables, SugarCube's naked variable markup allows printing them simply by including them within your normal passage text—i.e., variables in passage text are interpolated into a string representation of their values.
 
 The following forms are supported by the naked variable markup:
 
@@ -107,6 +107,10 @@ The `Link` component value may be the title of a passage or any valid URL to a r
 
 In addition to the standard pipe separator (`|`) used to separate the `Link` and `Text` components (as seen below), SugarCube also supports the arrow separators (`->` &amp; `<-`).  Particular to the arrow separators, the arrows' direction determines the order of the components, with the arrow always pointing at the `Link` component—i.e., the right arrow works like the pipe separator, `Text->Link`, while the left arrow is reversed, `Link<-Text`.
 
+<p role="note" class="warning"><b>Warning (Twine&nbsp;2):</b>
+Due to how the Twine&nbsp;2 automatic passage creation feature currently works, using any TwineScript expression for the <code>Link</code> component will cause a passage named after the expression to be created that will need to be deleted.  To avoid this problem, it's suggested that you use the separate argument form of the <a href="#macros-macro-link"><code>&lt;&lt;link&gt;&gt;</code> macro</a> in Twine&nbsp;2 when you need to use an expression.
+</p>
+
 <table>
 <caption>For the following examples assume: <code>$go</code> is <code>&quot;Grocery&quot;</code> and <code>$show</code> is <code>&quot;Go buy milk&quot;</code></caption>
 <thead>
@@ -158,6 +162,10 @@ SugarCube's image markup consists of a required `Image` component and optional `
 The `Image` component value may be any valid URL to an image resource (local or remote) or the title of an [embedded image passage (Twine&nbsp;1 &amp; Tweego only)](http://twinery.org/wiki/image).  The `Link` component value may be the title of a passage or any valid URL to a resource (local or remote).
 
 In addition to the standard pipe separator (`|`) used to separate the `Image` and `Title` components (as seen below), SugarCube also supports the arrow separators (`->` &amp; `<-`).  Particular to the arrow separators, the arrows' direction determines the order of the components, with the arrow always pointing at the `Image` component—i.e., the right arrow works like the pipe separator, `Title->Image`, while the left arrow is reversed, `Image<-Title`.
+
+<p role="note" class="warning"><b>Warning (Twine&nbsp;2):</b>
+Due to how the Twine&nbsp;2 automatic passage creation feature currently works, using any TwineScript expression for the <code>Link</code> component will cause a passage named after the expression to be created that will need to be deleted.  To avoid this problem, it's suggested that you use the separate argument form of the <a href="#macros-macro-link"><code>&lt;&lt;link&gt;&gt;</code> macro</a> in Twine&nbsp;2 when you need to use an expression.
+</p>
 
 <table>
 <caption>For the following examples assume: <code>$src</code> is <code>home.png</code>, <code>$go</code> is <code>&quot;Home&quot;</code>, and <code>$show</code> is <code>&quot;Go home&quot;</code></caption>
@@ -296,9 +304,9 @@ SugarCube provides a few special HTML attributes, which you may add to HTML tags
 </tbody>
 </table>
 
-#### Since:
+#### History:
 
-* `v2.0.0`: Basic syntax.
+* `v2.0.0`: Introduced.
 * `v2.24.0`: Added `data-passage` attribute support to `<audio>`, `<source>`, and `<video>` tags.
 
 <!-- *********************************************************************** -->
@@ -339,9 +347,9 @@ HTML attributes may be prefixed with directives, special text, which trigger spe
 </dd>
 </dl>
 
-#### Since:
+#### History:
 
-* `v2.21.0`: Basic syntax.
+* `v2.21.0`: Introduced.
 * `v2.23.5`: Fixed an issue with the evaluation directive where using multiple directives on a single HTML tag would result in some being unprocessed.
 
 
@@ -349,6 +357,14 @@ HTML attributes may be prefixed with directives, special text, which trigger spe
 	Line Continuation
 **************************************************************************** -->
 ## Line Continuation {#markup-line-continuation}
+
+<p role="note" class="see"><b>See Also:</b>
+The various no-break features—<a href="#macros-macro-nobr"><code>&lt;&lt;nobr&gt;&gt;</code> macro</a>, <a href="#special-tag-nobr"><code>nobr</code> special tag</a>, and <a href="#config-api-property-passages-nobr"><code>Config.passages.nobr</code> setting</a>—all perform a similar, though slightly different, function.
+</p>
+
+<p role="note" class="warning"><b>Warning:</b>
+Line continuations, or any markup that relies on line positioning, are incompatible with the no-break features because of how the latter function.
+</p>
 
 A backslash (`\`) that begins or ends a line is the line continuation markup.  Upon processing the backslash, associated line break, and all whitespace between them are removed—thus, joining the nearby lines together.  This is mostly useful for controlling whitespace when you want to wrap lines for readability, but not generate extra whitespace upon display, and the [`<<silently>>` macro](#macros-macro-silently) isn't an option because you need to generate output.
 
@@ -373,10 +389,6 @@ Yield the single line in the final output:
 ```
 The rain in Spain falls mainly on the plain.
 ```
-
-<p role="note"><b>Note:</b>
-The <a href="#macros-macro-nobr"><code>&lt;&lt;nobr&gt;&gt;</code> macro</a>, <a href="#special-tag-nobr"><code>nobr</code> special tag</a>, and <a href="#config-api-property-passages-nobr"><code>Config.passages.nobr</code> setting</a> all perform a similar, though slightly different, function.
-</p>
 
 
 <!-- ***************************************************************************
@@ -500,7 +512,7 @@ Because the style markups use the same tokens to begin and end each markup, the 
 **************************************************************************** -->
 ## List {#markup-list}
 
-An asterisk (`*`) or number sign (`#`) that begins a line defines a member of the unordered or ordered list markup, respectively.  
+An asterisk (`*`) or number sign (`#`) that begins a line defines a member of the unordered or ordered list markup, respectively.
 
 <table>
 <thead>
@@ -730,9 +742,9 @@ Assuming that `?He` resolves to `She` and `?his` to `her`, then that will produc
 She was always willing to lend her ear to anyone.
 ```
 
-#### Since:
+#### History:
 
-* `v2.29.0`
+* `v2.29.0`: Introduced.
 
 
 <!-- ***************************************************************************

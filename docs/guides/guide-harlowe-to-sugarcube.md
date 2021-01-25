@@ -3,8 +3,6 @@
 ************************************************************************************************ -->
 # Guide: Harlowe to SugarCube {#guide-harlowe-to-sugarcube}
 
-<b><i>Credits: original document by Chapel ([TwineLab](https://twinelab.net/), [GitHub](https://github.com/ChapelR/))</i></b>
-
 There are many differences between Harlowe and SugarCube, this guide will document some of the most critical you will need to account for if you're coming to SugarCube from a background in Harlowe.
 
 
@@ -265,7 +263,7 @@ Using a datamap in Harlowe:
 In SugarCube:
 
 ```
-<<set $map to new Map(["key", "value"])>>
+<<set $map to new Map([["key", "value"]])>>
 <<run $map.set("key", "another value")>>
 <<if $map.has("key")>>…<</if>>
 ```

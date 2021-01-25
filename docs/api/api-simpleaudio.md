@@ -34,9 +34,9 @@ Pauses playback of *all* currently registered tracks and, if they're not already
 This <em>should not</em> be done lightly if your audio sources are on the network, as it forces players to begin downloading them.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -56,9 +56,9 @@ Displays the loading screen until *all* currently registered audio tracks have e
 This <em>should not</em> be done lightly if your audio sources are on the network, as it forces players to begin downloading them.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -74,9 +74,9 @@ SimpleAudio.loadWithScreen();
 
 Gets or sets the mute state for the master volume (default: `false`).
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters:
 
@@ -101,9 +101,9 @@ SimpleAudio.mute(false);
 
 Gets or sets the mute-on-hidden state for the master volume (default: `false`).  The mute-on-hidden state controls whether the master volume is automatically muted/unmuted when the story's browser tab loses/gains visibility.  Loss of visibility is defined as when the browser window is either switched to another tab or minimized.
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters:
 
@@ -124,13 +124,13 @@ SimpleAudio.muteOnHidden(false);
 
 <!-- *********************************************************************** -->
 
-### `SimpleAudio.select(selector)` → *`AudioRunner` object* | *null* {#simpleaudio-api-method-select}
+### `SimpleAudio.select(selector)` → *`AudioRunner` object* {#simpleaudio-api-method-select}
 
 Returns an [`AudioRunner` instance](#audiorunner-api) for the tracks matching the given selector.
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters:
 
@@ -176,9 +176,9 @@ SimpleAudio.select(":all:not(:ui)").volume(0.40);
 
 Stops playback of *all* currently registered tracks.
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -198,9 +198,9 @@ Stops playback of *all* currently registered tracks and force them to drop any e
 Once a track has been unloaded, playback cannot occur until it is reloaded.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -216,9 +216,9 @@ SimpleAudio.unload();
 
 Gets or sets the master volume level (default: `1`).
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters:
 
@@ -246,9 +246,9 @@ SimpleAudio.volume(0.75);
 
 Adds an audio track with the given track ID.
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters:
 
@@ -281,9 +281,9 @@ Deletes all audio tracks.
 Cannot delete tracks solely under the control of a playlist.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -307,9 +307,9 @@ Cannot delete tracks solely under the control of a playlist.
 Does not currently remove the track from either groups or playlists.  Thus, any groups or playlists containing the deleted track should be rebuilt.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters:
 
@@ -331,9 +331,9 @@ Returns the [`AudioTrack` instance](#audiotrack-api) with the given track ID, or
 To affect multiple tracks and/or groups at once, see the <a href="#simpleaudio-api-method-select"><code>SimpleAudio.select()</code> method</a>.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters:
 
@@ -360,9 +360,9 @@ SimpleAudio.tracks.get("swamped").volume(1).play();
 
 Returns whether an audio track with the given track ID exists.
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters:
 
@@ -392,9 +392,9 @@ Adds an audio group with the given group ID.  Groups are useful for applying act
 If you want to play tracks in a sequence, then you want a <a href="#simpleaudio-api-method-lists-add">playlist</a> instead.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters:
 
@@ -418,9 +418,9 @@ Deletes all audio groups.
 Only deletes the groups themselves, does not affect their component tracks.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -440,9 +440,9 @@ Deletes the audio group with the given group ID.
 Only deletes the group itself, does not affect its component tracks.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters:
 
@@ -464,9 +464,9 @@ Returns the array of track IDs with the given group ID, or `null` on failure.
 To actually affect multiple tracks and/or groups, see the <a href="#simpleaudio-api-method-select"><code>SimpleAudio.select()</code> method</a>.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters:
 
@@ -484,9 +484,9 @@ SimpleAudio.groups.get(":ui")  → Returns the array of track IDs matching ":ui"
 
 Returns whether an audio group with the given group ID exists.
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters:
 
@@ -516,9 +516,9 @@ Adds a playlist with the given list ID.  Playlists are useful for playing tracks
 If you simply want to apply actions to multiple tracks simultaneously, then you want a <a href="#simpleaudio-api-method-groups-add">group</a> instead.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.28.0`: Basic syntax.
+* `v2.28.0`: Introduced.
 * `v2.29.0`: Changed descriptor object `copy` property to `own`.
 
 #### Parameters:
@@ -609,9 +609,9 @@ SimpleAudio.lists.add("bgm_lacuna",
 
 Deletes all playlists.
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -627,9 +627,9 @@ SimpleAudio.lists.clear();
 
 Deletes the playlist with the given list ID.
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters:
 
@@ -647,9 +647,9 @@ SimpleAudio.lists.delete("bgm_lacuna");
 
 Returns the [`AudioList` instance](#audiolist-api) with the given list ID, or `null` on failure.
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters:
 
@@ -676,9 +676,9 @@ SimpleAudio.lists.get("bgm_lacuna").volume(1).loop(true).play();
 
 Returns whether a playlist with the given list ID exists.
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters:
 

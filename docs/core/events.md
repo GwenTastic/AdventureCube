@@ -1,7 +1,7 @@
 <!-- ***********************************************************************************************
-	Events & Tasks
+	Events
 ************************************************************************************************ -->
-# Events &amp; Tasks {#events}
+# Events {#events}
 
 Events are messages that are sent (a.k.a.: fired, triggered) to notify code that something has taken place, from player interactions to automated happenings.  Each event is represented by an object that has properties that may be used to get additional information about what happened.
 
@@ -33,9 +33,9 @@ Global event triggered as the last step in closing the dialog when [`Dialog.clos
 You cannot obtain data about the closing dialog from the dialog itself—e.g., title or classes—when using the <code>:dialogclosed</code> event, as the dialog has already closed and been reset by the time the event is fired.  If you need that kind of information from the dialog itself, then you may use the <a href="#events-dialog-event-dialogclosing"><code>:dialogclosing</code> event</a> instead.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.29.0`
+* `v2.29.0`: Introduced.
 
 #### Event object properties: *none*
 
@@ -63,9 +63,9 @@ $(document).one(':dialogclosed', function (ev) {
 
 Global event triggered as the first step in closing the dialog when [`Dialog.close()`](#dialog-api-method-close) is called.
 
-#### Since:
+#### History:
 
-* `v2.29.0`
+* `v2.29.0`: Introduced.
 
 #### Event object properties: *none*
 
@@ -93,9 +93,9 @@ $(document).one(':dialogclosing', function (ev) {
 
 Global event triggered as the last step in opening the dialog when [`Dialog.open()`](#dialog-api-method-open) is called.
 
-#### Since:
+#### History:
 
-* `v2.29.0`
+* `v2.29.0`: Introduced.
 
 #### Event object properties: *none*
 
@@ -123,9 +123,9 @@ $(document).one(':dialogopened', function (ev) {
 
 Global event triggered as the first step in opening the dialog when [`Dialog.open()`](#dialog-api-method-open) is called.
 
-#### Since:
+#### History:
 
-* `v2.29.0`
+* `v2.29.0`: Introduced.
 
 #### Event object properties: *none*
 
@@ -149,31 +149,31 @@ $(document).one(':dialogopening', function (ev) {
 
 
 <!-- ***************************************************************************
-	Navigation Events & Tasks
+	Navigation Events
 **************************************************************************** -->
-## Navigation Events &amp; Tasks<!-- legacy --><span id="navigation-events-tasks"></span><span id="navigation-overview"></span><span id="navigation-events"></span><span id="navigation-tasks"></span><!-- /legacy --> {#events-navigation}
+## Navigation Events<!-- legacy --><span id="navigation-events-tasks"></span><span id="navigation-overview"></span><span id="navigation-events"></span><span id="navigation-tasks"></span><!-- /legacy --> {#events-navigation}
 
-Navigation events, and tasks, allow the execution of JavaScript code at specific points during passage navigation.
+Navigation events allow the execution of JavaScript code at specific points during passage navigation.
 
 In order of processing: *(for reference, this also shows tasks and various special passages)*
 
 1. Passage init.  Happens before the modification of the state history.
 	1. `:passageinit` event.
-	2. `prehistory` tasks.
+	2. <span class="deprecated">`prehistory` tasks.</span> *(deprecated)*
 2. Passage start. Happens before the rendering of the incoming passage.
-	1. `predisplay` tasks.
+	1. <span class="deprecated">`predisplay` tasks.</span> *(deprecated)*
 	2. [`PassageReady` special passage](#special-passage-passageready).
 	3. `:passagestart` event.
-	4. `prerender` tasks.
+	4. <span class="deprecated">`prerender` tasks.</span> *(deprecated)*
 	5. [`PassageHeader` special passage](#special-passage-passageheader).
 3. Passage render.  Happens after the rendering of the incoming passage.
 	1. [`PassageFooter` special passage](#special-passage-passagefooter).
 	2. `:passagerender` event.
-	3. `postrender` tasks.
+	3. <span class="deprecated">`postrender` tasks.</span> *(deprecated)*
 4. Passage display.  Happens after the display—i.e., output—of the incoming passage.
 	1. [`PassageDone` special passage](#special-passage-passagedone).
 	2. `:passagedisplay` event.
-	3. `postdisplay` tasks.
+	3. <span class="deprecated">`postdisplay` tasks.</span> *(deprecated)*
 5. UI bar special passages update.  Happens before the end of passage navigation.
 	1. [`StoryBanner` special passage](#special-passage-storybanner).
 	2. [`StoryDisplayTitle` special passage](#special-passage-storydisplaytitle).
@@ -190,9 +190,9 @@ In order of processing: *(for reference, this also shows tasks and various speci
 
 Triggered before the modification of the state history.
 
-#### Since:
+#### History:
 
-* `v2.20.0`
+* `v2.20.0`: Introduced.
 
 #### Event object properties:
 
@@ -218,9 +218,9 @@ $(document).one(':passageinit', function (ev) {
 
 Triggered before the rendering of the incoming passage.
 
-#### Since:
+#### History:
 
-* `v2.20.0`
+* `v2.20.0`: Introduced.
 
 #### Event object properties:
 
@@ -261,9 +261,9 @@ $(document).on(':passagestart', function (ev) {
 
 Triggered after the rendering of the incoming passage.
 
-#### Since:
+#### History:
 
-* `v2.20.0`
+* `v2.20.0`: Introduced.
 
 #### Event object properties:
 
@@ -304,9 +304,9 @@ $(document).on(':passagerender', function (ev) {
 
 Triggered after the display—i.e., output—of the incoming passage.
 
-#### Since:
+#### History:
 
-* `v2.20.0`: Basic syntax.
+* `v2.20.0`: Introduced.
 * `v2.31.0`: Added `content` property to event object.
 
 #### Event object properties:
@@ -348,9 +348,9 @@ $(document).on(':passagedisplay', function (ev) {
 
 Triggered at the end of passage navigation.
 
-#### Since:
+#### History:
 
-* `v2.20.0`: Basic syntax.
+* `v2.20.0`: Introduced.
 * `v2.31.0`: Added `content` property to event object.
 
 #### Event object properties:
@@ -388,131 +388,68 @@ $(document).on(':passageend', function (ev) {
 
 <!-- *********************************************************************** -->
 
-### `prehistory` tasks<!-- legacy --><span id="navigation-task-prehistory"></span><!-- /legacy --> {#events-navigation-task-prehistory}
+### <span class="deprecated">`prehistory` tasks</span><!-- legacy --><span id="navigation-task-prehistory"></span><!-- /legacy --> {#events-navigation-task-prehistory}
 
-Executed before the modification of the state history.
-
-<p role="note"><b>Note:</b>
-Tasks are an older method of enabling passage navigation events and you are encouraged to use <a href="#events-navigation">Navigation Events</a> instead as they allow for easier control and are triggered at better points during navigation.
+<p role="note" class="warning"><b>Deprecated:</b>
+<code>prehistory</code> tasks have been deprecated and should no longer be used.  See the <a href="#events-navigation-event-passageinit"><code>:passageinit</code> event</a> for its replacement.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.0.0`
-
-#### Parameters:
-
-* **`taskName`:** (*string*) The name of the executing task.
-
-#### Examples:
-
-```
-prehistory["Some Task Name"] = function (taskName) {
-	/* JavaScript code */
-};
-```
+* `v2.0.0`: Introduced.
+* `v2.31.0`: Deprecated.
 
 <!-- *********************************************************************** -->
 
-### `predisplay` tasks<!-- legacy --><span id="navigation-task-predisplay"></span><!-- /legacy --> {#events-navigation-task-predisplay}
+### <span class="deprecated">`predisplay` tasks</span><!-- legacy --><span id="navigation-task-predisplay"></span><!-- /legacy --> {#events-navigation-task-predisplay}
 
-Executed before the rendering of the incoming passage.
-
-<p role="note"><b>Note:</b>
-Tasks are an older method of enabling passage navigation events and you are encouraged to use <a href="#events-navigation">Navigation Events</a> instead as they allow for easier control and are triggered at better points during navigation.
+<p role="note" class="warning"><b>Deprecated:</b>
+<code>predisplay</code> tasks have been deprecated and should no longer be used.  See the <a href="#events-navigation-event-passagestart"><code>:passagestart</code> event</a> for its replacement.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.0.0`
-
-#### Parameters:
-
-* **`taskName`:** (*string*) The name of the executing task.
-
-#### Examples:
-
-```
-predisplay["Some Task Name"] = function (taskName) {
-	/* JavaScript code */
-};
-```
+* `v2.0.0`: Introduced.
+* `v2.31.0`: Deprecated.
 
 <!-- *********************************************************************** -->
 
-### `prerender` tasks<!-- legacy --><span id="navigation-task-prerender"></span><!-- /legacy --> {#events-navigation-task-prerender}
+### <span class="deprecated">`prerender` tasks</span><!-- legacy --><span id="navigation-task-prerender"></span><!-- /legacy --> {#events-navigation-task-prerender}
 
-Executed before the rendering of the incoming passage.
-
-<p role="note"><b>Note:</b>
-Tasks are an older method of enabling passage navigation events and you are encouraged to use <a href="#events-navigation">Navigation Events</a> instead as they allow for easier control and are triggered at better points during navigation.
+<p role="note" class="warning"><b>Deprecated:</b>
+<code>prerender</code> tasks have been deprecated and should no longer be used.  See the <a href="#events-navigation-event-passagestart"><code>:passagestart</code> event</a> for its replacement.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.0.0`
-
-#### Parameters:
-
-* **`content`:** (*`HTMLElement` object*) The, likely, empty element that will eventually hold the rendered content of the incoming passage.
-* **`taskName`:** (*string*) The name of the executing task.
-
-#### Examples:
-
-```
-prerender["Some Task Name"] = function (content, taskName) {
-	/* JavaScript code */
-};
-```
+* `v2.0.0`: Introduced.
+* `v2.31.0`: Deprecated.
 
 <!-- *********************************************************************** -->
 
-### `postrender` tasks<!-- legacy --><span id="navigation-task-postrender"></span><!-- /legacy --> {#events-navigation-task-postrender}
+### <span class="deprecated">`postrender` tasks</span><!-- legacy --><span id="navigation-task-postrender"></span><!-- /legacy --> {#events-navigation-task-postrender}
 
-Executed after the rendering of the incoming passage.
-
-<p role="note"><b>Note:</b>
-Tasks are an older method of enabling passage navigation events and you are encouraged to use <a href="#events-navigation">Navigation Events</a> instead as they allow for easier control and are triggered at better points during navigation.
+<p role="note" class="warning"><b>Deprecated:</b>
+<code>postrender</code> tasks have been deprecated and should no longer be used.  See the <a href="#events-navigation-event-passagerender"><code>:passagerender</code> event</a> for its replacement.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.0.0`
-
-#### Parameters:
-
-* **`content`:** (*`HTMLElement` object*) The element holding the fully rendered content of the incoming passage.
-* **`taskName`:** (*string*) The name of the executing task.
-
-#### Examples:
-
-```
-postrender["Some Task Name"] = function (content, taskName) {
-	/* JavaScript code */
-};
-```
+* `v2.0.0`: Introduced.
+* `v2.31.0`: Deprecated.
 
 <!-- *********************************************************************** -->
 
-### `postdisplay` tasks<!-- legacy --><span id="navigation-task-postdisplay"></span><!-- /legacy --> {#events-navigation-task-postdisplay}
+### <span class="deprecated">`postdisplay` tasks</span><!-- legacy --><span id="navigation-task-postdisplay"></span><!-- /legacy --> {#events-navigation-task-postdisplay}
 
-Executed after the display—i.e., output—of the incoming passage.
+<p role="note" class="warning"><b>Deprecated:</b>
+<code>postdisplay</code> tasks have been deprecated and should no longer be used.  See the <a href="#events-navigation-event-passagedisplay"><code>:passagedisplay</code> event</a> for its replacement.
+</p>
 
-#### Since:
+#### History:
 
-* `v2.0.0`
-
-#### Parameters:
-
-* **`taskName`:** (*string*) The name of the executing task.
-
-#### Examples:
-
-```
-postdisplay["Some Task Name"] = function (taskName) {
-	/* JavaScript code */
-};
-```
+* `v2.0.0`: Introduced.
+* `v2.31.0`: Deprecated.
 
 
 <!-- ***************************************************************************
@@ -536,9 +473,9 @@ To add or remove event listeners to audio tracks managed by the <a href="#simple
 
 Track event triggered when a fade completes normally.
 
-#### Since:
+#### History:
 
-* `v2.29.0`
+* `v2.29.0`: Introduced.
 
 #### Event object properties: *none*
 
@@ -562,9 +499,9 @@ someTracks.on(':faded', function (ev) {
 
 Track event triggered when a fade starts.
 
-#### Since:
+#### History:
 
-* `v2.29.0`
+* `v2.29.0`: Introduced.
 
 #### Event object properties: *none*
 
@@ -592,9 +529,9 @@ Track event triggered when playback is stopped after [`<AudioTrack>.stop()`](#au
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/ended_event"><code>ended</code></a> and <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause_event"><code>pause</code></a> for information on somewhat similar native events.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.29.0`
+* `v2.29.0`: Introduced.
 
 #### Event object properties: *none*
 
@@ -626,9 +563,9 @@ System events allow the execution of JavaScript code at specific points during s
 
 Global event triggered once just before the dismissal of the loading screen at startup.
 
-#### Since:
+#### History:
 
-* `v2.31.0`
+* `v2.31.0`: Introduced.
 
 #### Event object properties: *none*
 
@@ -647,9 +584,9 @@ $(document).one(':storyready', function (ev) {
 
 Global event triggered once just before the page is reloaded when [`Engine.restart()`](#engine-api-method-restart) is called.
 
-#### Since:
+#### History:
 
-* `v2.23.0`
+* `v2.23.0`: Introduced.
 
 #### Event object properties: *none*
 
@@ -658,6 +595,83 @@ Global event triggered once just before the page is reloaded when [`Engine.resta
 ```
 /* Execute the handler function when the event triggers. */
 $(document).one(':enginerestart', function (ev) {
+	/* JavaScript code */
+});
+```
+
+
+<!-- ***************************************************************************
+	`<<type>>` Events
+**************************************************************************** -->
+## `<<type>>` Events {#events-type-macro}
+
+`<<type>>` macro events allow the execution of JavaScript code at specific points during typing.
+
+<!-- *********************************************************************** -->
+
+### `:typingcomplete` event {#events-type-macro-event-typingcomplete}
+
+Global event triggered when all `<<type>>` macros within a passage have completed.
+
+<p role="note"><b>Note:</b>
+Injecting additional <code>&lt;&lt;type&gt;&gt;</code> macro invocations <em>after</em> a <code>:typingcomplete</code> event has been fired will cause another event to eventually be generated, since you're creating a new sequence of typing.
+</p>
+
+#### History:
+
+* `v2.32.0`: Introduced.
+
+#### Event object properties: *none*
+
+#### Examples:
+
+```
+/* Execute the handler function when the event triggers. */
+$(document).on(':typingcomplete', function (ev) {
+	/* JavaScript code */
+});
+```
+
+<!-- *********************************************************************** -->
+
+### `:typingstart` event {#events-type-macro-event-typingstart}
+
+Local event triggered on the typing wrapper when the typing of a section starts.
+
+#### History:
+
+* `v2.32.0`: Introduced
+* `v2.33.0`: Changed to a local event that bubbles up the DOM tree.
+
+#### Event object properties: *none*
+
+#### Examples:
+
+```
+/* Execute the handler function when the event triggers. */
+$(document).on(':typingstart', function (ev) {
+	/* JavaScript code */
+});
+```
+
+<!-- *********************************************************************** -->
+
+### `:typingstop` event {#events-type-macro-event-typingstop}
+
+Local event triggered on the typing wrapper when the typing of a section stops.
+
+#### History:
+
+* `v2.32.0`: Introduced
+* `v2.33.0`: Changed to a local event that bubbles up the DOM tree.
+
+#### Event object properties: *none*
+
+#### Examples:
+
+```
+/* Execute the handler function when the event triggers. */
+$(document).on(':typingstop', function (ev) {
 	/* JavaScript code */
 });
 ```

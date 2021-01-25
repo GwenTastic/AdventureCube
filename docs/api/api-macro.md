@@ -9,26 +9,26 @@
 
 <!-- *********************************************************************** -->
 
-### `Macro.add(name , definition [, deep])` {#macro-api-method-add}
+### `Macro.add(name , definition)` {#macro-api-method-add}
 
 Add new macro(s).
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced
+* `v2.33.0`: Obsoleted the `deep` parameter.
 
 #### Parameters:
 
 * **`name`:** (*string* | *string array*) Name, or array of names, of the macro(s) to add.  **NOTE:** Names must consist of characters from the basic Latin alphabet and start with a letter, which may be optionally followed by any number of letters, numbers, the underscore, or the hyphen.
 * **`definition`:** (*object* | *string*) Definition of the macro(s) or the name of an existing macro whose definition to copy.
-* **`deep`:** (optional, *boolean*) Enables deep cloning of the definition.  Used to give macros separate instances of the same definition.
 
 #### Definition object:
 
 A macro definition object should have some of the following properties (only `handler` is absolutely required):
 
-* **`skipArgs`:** (optional, *boolean*) Disables parsing argument strings into discrete arguments.  Used by macros that only use the raw/full argument strings.
-* **`tags`:** (optional, *null* | *string array*) Signifies that the macro is a container macro—i.e., not self-closing.  An array of the names of the child tags, or `null` if there are no child tags.
+* **`skipArgs`:** (optional, *boolean* | *string array*) Disables parsing argument strings into discrete arguments.  Used by macros that only use the raw/full argument strings.  Boolean `true` to affect all tags or an array of tag names to affect.
+* **`tags`:** (optional, *null* | *string array*) Signifies that the macro is a container macro—i.e., not self-closing.  An array child tag names or `null`, if there are no child tags.
 * **`handler`:** (*function*) The macro's main function.  It will be called without arguments, but with its `this` set to a [macro context object](#macrocontext-api).
 
 Additional properties may be added for internal use.
@@ -67,9 +67,9 @@ Macro.add('if', {
 
 Remove existing macro(s).
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters:
 
@@ -88,9 +88,9 @@ Macro.delete(["amacro", "bmacro"])
 
 Return the named macro definition, or `null` on failure.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters:
 
@@ -108,9 +108,9 @@ Macro.get("print")
 
 Returns whether the named macro exists.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters:
 
@@ -128,9 +128,9 @@ Macro.has("print")
 
 Return the named macro tag's parents array (includes the names of all macros who have registered the tag as a child), or `null` on failure.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters:
 
@@ -148,9 +148,9 @@ Macro.tags.get("else")  → For the standard library, returns: ["if"]
 
 Returns whether the named macro tag exists.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters:
 

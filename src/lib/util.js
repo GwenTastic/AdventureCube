@@ -173,11 +173,59 @@ var Util = (() => { // eslint-disable-line no-unused-vars, no-var
 	/*
 		Returns an entity encoded version of the passed string.
 
+		NOTE: Escapes the five primary HTML special characters, the backquote,
+		and SugarCube markup metacharacters.
+	*/
+	const _markupCharsRe    = /[!"#$&'*\-/<=>?@[\\\]^_`{|}~]/g;
+	const _hasMarkupCharsRe = new RegExp(_markupCharsRe.source); // to drop the global flag
+	const _markupCharsMap   = utilToEnum({
+		/* eslint-disable quote-props */
+		'!'  : '&#33;',
+		'"'  : '&quot;',
+		'#'  : '&#35;',
+		'$'  : '&#36;',
+		'&'  : '&amp;',
+		"'"  : '&#39;',
+		'*'  : '&#42;',
+		'-'  : '&#45;',
+		'/'  : '&#47;',
+		'<'  : '&lt;',
+		'='  : '&#61;',
+		'>'  : '&gt;',
+		'?'  : '&#63;',
+		'@'  : '&#64;',
+		'['  : '&#91;',
+		'\\' : '&#92;',
+		']'  : '&#93;',
+		'^'  : '&#94;',
+		'_'  : '&#95;',
+		'`'  : '&#96;',
+		'{'  : '&#123;',
+		'|'  : '&#124;',
+		'}'  : '&#125;',
+		'~'  : '&#126;'
+		/* eslint-enable quote-props */
+	});
+
+	function utilEscapeMarkup(str) {
+		if (str == null) { // lazy equality for null
+			return '';
+		}
+
+		const val = String(str);
+		return val && _hasMarkupCharsRe.test(val)
+			? val.replace(_markupCharsRe, ch => _markupCharsMap[ch])
+			: val;
+	}
+
+	/*
+		Returns an entity encoded version of the passed string.
+
 		NOTE: Only escapes the five primary special characters and the backquote.
 	*/
 	const _htmlCharsRe    = /[&<>"'`]/g;
 	const _hasHtmlCharsRe = new RegExp(_htmlCharsRe.source); // to drop the global flag
-	const _htmlCharsMap   = Object.freeze({
+	const _htmlCharsMap   = utilToEnum({
 		'&' : '&amp;',
 		'<' : '&lt;',
 		'>' : '&gt;',
@@ -205,7 +253,7 @@ var Util = (() => { // eslint-disable-line no-unused-vars, no-var
 	*/
 	const _escapedHtmlRe    = /&(?:amp|#38|#x26|lt|#60|#x3c|gt|#62|#x3e|quot|#34|#x22|apos|#39|#x27|#96|#x60);/gi;
 	const _hasEscapedHtmlRe = new RegExp(_escapedHtmlRe.source, 'i'); // to drop the global flag
-	const _escapedHtmlMap   = Object.freeze({
+	const _escapedHtmlMap   = utilToEnum({
 		'&amp;'  : '&', // ampersand (HTML character entity, XML predefined entity)
 		'&#38;'  : '&', // ampersand (decimal numeric character reference)
 		'&#x26;' : '&', // ampersand (hexadecimal numeric character reference)
@@ -550,6 +598,70 @@ var Util = (() => { // eslint-disable-line no-unused-vars, no-var
 		return ex;
 	}
 
+	/*
+		Returns a sanitized version of the passed `KeyboardEvent.key` value from
+		previous incarnations of the specification that should better reflect the
+		current incarnation.
+	*/
+	const utilScrubEventKey = (() => {
+		let separatorKey;
+		let decimalKey;
+
+		// Attempt to determine the player's 'Separator' and 'Decimal' key values
+		// based on their current locale.
+		if (typeof Intl !== 'undefined' && typeof Intl.NumberFormat === 'function') {
+			const match = new Intl.NumberFormat().format(111111.5).match(/(\D*)\d+(\D*)/);
+
+			if (match) {
+				separatorKey = match[1];
+				decimalKey   = match[2];
+			}
+		}
+
+		// Failover to US-centric values, if using `Intl.NumberFormat` failed.
+		if (!separatorKey && !decimalKey) {
+			separatorKey = ',';
+			decimalKey   = '.';
+		}
+
+		// Maps older `KeyboardEvent.key` values to more current/correct ones.
+		function utilScrubEventKey(key) {
+			switch (key) {
+			// case 'OS':                 return 'Meta'; // Unreliable.
+			case 'Scroll':             return 'ScrollLock';
+			case 'Spacebar':           return '\x20';
+			case 'Left':               return 'ArrowLeft';
+			case 'Right':              return 'ArrowRight';
+			case 'Up':                 return 'ArrowUp';
+			case 'Down':               return 'ArrowDown';
+			case 'Del':                return 'Delete';
+			case 'Crsel':              return 'CrSel';
+			case 'Exsel':              return 'ExSel';
+			case 'Esc':                return 'Escape';
+			case 'Apps':               return 'ContextMenu';
+			case 'Nonconvert':         return 'NonConvert';
+			case 'MediaNextTrack':     return 'MediaTrackNext';
+			case 'MediaPreviousTrack': return 'MediaTrackPrevious';
+			case 'VolumeUp':           return 'AudioVolumeUp';
+			case 'VolumeDown':         return 'AudioVolumeDown';
+			case 'VolumeMute':         return 'AudioVolumeMute';
+			case 'Zoom':               return 'ZoomToggle';
+			case 'SelectMedia':        /* see below */
+			case 'MediaSelect':        return 'LaunchMediaPlayer';
+			case 'Add':                return '+';
+			case 'Divide':             return '/';
+			case 'Multiply':           return '*';
+			case 'Subtract':           return '-';
+			case 'Decimal':            return decimalKey;
+			case 'Separator':          return separatorKey;
+			}
+
+			return key;
+		}
+
+		return utilScrubEventKey;
+	})();
+
 
 	/*******************************************************************************************************************
 		Module Exports.
@@ -570,9 +682,15 @@ var Util = (() => { // eslint-disable-line no-unused-vars, no-var
 			String Encoding Functions.
 		*/
 		slugify      : { value : utilSlugify },
+		escapeMarkup : { value : utilEscapeMarkup },
 		escape       : { value : utilEscape },
 		unescape     : { value : utilUnescape },
 		charAndPosAt : { value : utilCharAndPosAt },
+
+		/*
+			Time Functions.
+		*/
+		now : { value : utilNow },
 
 		/*
 			Conversion Functions.
@@ -582,11 +700,7 @@ var Util = (() => { // eslint-disable-line no-unused-vars, no-var
 		fromCssProperty  : { value : utilFromCssProperty },
 		parseUrl         : { value : utilParseUrl },
 		newExceptionFrom : { value : utilNewExceptionFrom },
-
-		/*
-			Time Functions.
-		*/
-		now : { value : utilNow },
+		scrubEventKey    : { value : utilScrubEventKey },
 
 		/*
 			Legacy Aliases.

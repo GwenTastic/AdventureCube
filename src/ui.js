@@ -7,8 +7,8 @@
 
 ***********************************************************************************************************************/
 /*
-	global Alert, Dialog, Engine, Has, L10n, Save, Setting, State, Story, Util, Wikifier, Config, errorPrologRegExp,
-	       settings
+	global Alert, Browser, Config, Dialog, Engine, Has, L10n, Save, Setting, State, Story, Util, Wikifier,
+	       errorPrologRegExp, settings
 */
 
 var UI = (() => { // eslint-disable-line no-unused-vars, no-var
@@ -75,7 +75,7 @@ var UI = (() => { // eslint-disable-line no-unused-vars, no-var
 		UI Functions, Built-ins.
 	*******************************************************************************************************************/
 	function uiOpenAlert(message, /* options, closeFn */ ...args) {
-		jQuery(Dialog.setup('Alert', 'alert'))
+		jQuery(Dialog.setup(L10n.get('alertTitle'), 'alert'))
 			.append(
 				  `<p>${message}</p><ul class="buttons">`
 				+ `<li><button id="alert-ok" class="ui-close">${L10n.get(['alertOk', 'ok'])}</button></li>`
@@ -202,6 +202,8 @@ var UI = (() => { // eslint-disable-line no-unused-vars, no-var
 	}
 
 	function uiBuildSaves() {
+		const savesAllowed = typeof Config.saves.isAllowed !== 'function' || Config.saves.isAllowed();
+
 		function createActionItem(bId, bClass, bText, bAction) {
 			const $btn = jQuery(document.createElement('button'))
 				.attr('id', `saves-${bId}`)
@@ -363,7 +365,7 @@ var UI = (() => { // eslint-disable-line no-unused-vars, no-var
 				else {
 					// Add the save button.
 					$tdLoad.append(
-						createButton('save', 'ui-close', L10n.get('savesLabelSave'), i, Save.slots.save)
+						createButton('save', 'ui-close', L10n.get('savesLabelSave'), i, savesAllowed ? Save.slots.save : null)
 					);
 
 					// Add the description.
@@ -392,6 +394,7 @@ var UI = (() => { // eslint-disable-line no-unused-vars, no-var
 
 		const $dialogBody = jQuery(Dialog.setup(L10n.get('savesTitle'), 'saves'));
 		const savesOk     = Save.ok();
+		const fileOk      = Has.fileAPI && (Config.saves.tryDiskOnMobile || !Browser.isMobile.any());
 
 		// Add saves list.
 		if (savesOk) {
@@ -399,17 +402,17 @@ var UI = (() => { // eslint-disable-line no-unused-vars, no-var
 		}
 
 		// Add button bar items (export, import, and clear).
-		if (savesOk || Has.fileAPI) {
+		if (savesOk || fileOk) {
 			const $btnBar = jQuery(document.createElement('ul'))
 				.addClass('buttons')
 				.appendTo($dialogBody);
 
-			if (Has.fileAPI) {
+			if (fileOk) {
 				$btnBar.append(createActionItem(
 					'export',
 					'ui-close',
 					L10n.get('savesLabelExport'),
-					() => Save.export()
+					savesAllowed ? () => Save.export() : null
 				));
 				$btnBar.append(createActionItem(
 					'import',

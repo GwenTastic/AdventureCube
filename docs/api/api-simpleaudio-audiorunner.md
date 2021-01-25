@@ -15,9 +15,13 @@ Audio runners are useful for performing actions on multiple tracks at once.
 
 Starts playback of the selected tracks and fades them between the specified starting and destination volume levels over the specified number of seconds.
 
-#### Since:
+<p role="note"><b>Note:</b>
+The <a href="#config-api-property-audio-pauseonfadetozero"><code>Config.audio.pauseOnFadeToZero</code> setting</a> (default: <code>true</code>) determines whether the audio subsystem automatically pauses tracks that have been faded to <code>0</code> volume (silent).
+</p>
 
-* `v2.28.0`
+#### History:
+
+* `v2.28.0`: Introduced.
 
 #### Parameters:
 
@@ -38,9 +42,9 @@ someTracks.fade(6, 1, 0);
 
 Starts playback of the selected tracks and fades them from the specified volume level to `1` (loudest) over the specified number of seconds.
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters:
 
@@ -60,9 +64,13 @@ someTracks.fadeIn(5, 0);
 
 Starts playback of the selected tracks and fades them from the specified volume level to `0` (silent) over the specified number of seconds.
 
-#### Since:
+<p role="note"><b>Note:</b>
+The <a href="#config-api-property-audio-pauseonfadetozero"><code>Config.audio.pauseOnFadeToZero</code> setting</a> (default: <code>true</code>) determines whether the audio subsystem automatically pauses tracks that have been faded to <code>0</code> volume (silent).
+</p>
 
-* `v2.28.0`
+#### History:
+
+* `v2.28.0`: Introduced.
 
 #### Parameters:
 
@@ -86,9 +94,9 @@ Interrupts an in-progress fade of the selected tracks, or does nothing if no fad
 This does not alter the volume level.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -108,9 +116,9 @@ Pauses playback of the selected tracks and, if they're not already in the proces
 This <em>should not</em> be done lightly if your audio sources are on the network, as it forces players to begin downloading them.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -126,9 +134,9 @@ someTracks.load();
 
 Sets the selected tracks' repeating playback state (default: `false`).  Returns a reference to the current `AudioRunner` instance for chaining.
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters:
 
@@ -150,9 +158,9 @@ someTracks.loop(false);
 
 Sets the selected tracks' volume mute state (default: `false`).  Returns a reference to the current `AudioRunner` instance for chaining.
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters:
 
@@ -182,9 +190,9 @@ Shorthand for <a href="http://api.jquery.com/off/">jQuery's <code>.off()</code> 
 The <code>SimpleAudio</code> APIs use events internally for various pieces of functionality.  To prevent conflicts, it is <strong><em>strongly</em></strong> suggested that you specify a custom user namespace—e.g., <code>.myEvents</code>—when attaching your own handlers.  It is further <strong><em>strongly</em></strong> suggested that you provide that same custom user namespace when removing them.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters:
 
@@ -213,9 +221,9 @@ Shorthand for <a href="http://api.jquery.com/on/">jQuery's <code>.on()</code> me
 The <code>SimpleAudio</code> APIs use events internally for various pieces of functionality.  To prevent conflicts, it is <strong><em>strongly</em></strong> suggested that you specify a custom user namespace—e.g., <code>.myEvents</code>—when attaching your own handlers.  It is further <strong><em>strongly</em></strong> suggested that you provide that same custom user namespace when removing them.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters:
 
@@ -246,9 +254,9 @@ Shorthand for <a href="http://api.jquery.com/one/">jQuery's <code>.one()</code> 
 The <code>SimpleAudio</code> APIs use events internally for various pieces of functionality.  To prevent conflicts, it is <strong><em>strongly</em></strong> suggested that you specify a custom user namespace—e.g., <code>.myEvents</code>—when attaching your own handlers.  It is further <strong><em>strongly</em></strong> suggested that you provide that same custom user namespace when removing them.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters:
 
@@ -271,9 +279,9 @@ someTracks.one('ended.myEvents', function () {
 
 Pauses playback of the selected tracks.
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -289,9 +297,9 @@ someTracks.pause();
 
 Begins playback of the selected tracks.
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -307,9 +315,9 @@ someTracks.play();
 
 Begins playback of the selected tracks or, failing that, sets the tracks to begin playback as soon as the player has interacted with the document.
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -325,9 +333,9 @@ someTracks.playWhenAllowed();
 
 Stops playback of the selected tracks.
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -343,9 +351,9 @@ someTracks.stop();
 
 Sets the selected tracks' current time in seconds.  Returns a reference to the current `AudioRunner` instance for chaining.
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters:
 
@@ -368,9 +376,9 @@ Stops playback of the selected tracks and forces them to drop any existing data.
 Once unloaded, playback cannot occur until the selected tracks' data is loaded again.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -386,9 +394,9 @@ someTracks.unload();
 
 Sets the selected tracks' volume level (default: `1`).  Returns a reference to the current `AudioRunner` instance for chaining.
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters:
 

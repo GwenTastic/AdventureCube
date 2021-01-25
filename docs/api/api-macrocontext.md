@@ -15,9 +15,9 @@ Macro handlers are called with no arguments, but with their `this` set to a macr
 
 The argument string parsed into an array of discrete arguments.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Examples:
 
@@ -35,9 +35,9 @@ this.args[2]      → Returns 'c'
 
 The argument string after converting all TwineScript syntax elements into their native JavaScript counterparts.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Examples:
 
@@ -52,9 +52,9 @@ this.args.full  → Returns '"a" === "b"'
 
 The unprocessed argument string.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Examples:
 
@@ -69,9 +69,9 @@ this.args.raw  → Returns '"a" is "b"'
 
 The name of the macro.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Examples:
 
@@ -86,9 +86,9 @@ this.name  → Returns 'someMacro'
 
 The current output element.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -96,9 +96,9 @@ The current output element.
 
 The (execution) context object of the macro's parent, or `null` if the macro has no parent.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -106,9 +106,9 @@ The (execution) context object of the macro's parent, or `null` if the macro has
 
 The parser instance that generated the macro call.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -122,9 +122,9 @@ The text of a container macro parsed into discrete payload objects by tag.  Payl
 	* **`args.raw`:** (*string*) The current tag's unprocessed argument string.  Equivalent in function to [`<MacroContext>.args.raw`](#macrocontext-api-prototype-property-args-raw).
 * **`contents`:** (*string*) The current tag's contents—i.e., the text between the current tag and the next.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -132,9 +132,9 @@ The text of a container macro parsed into discrete payload objects by tag.  Payl
 
 The macro's definition—created via [`Macro.add()`](#macro-api-method-add).
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -142,9 +142,9 @@ The macro's definition—created via [`Macro.add()`](#macro-api-method-add).
 
 Returns whether any of the macro's ancestors passed the test implemented by the given filter function.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters:
 
@@ -163,9 +163,9 @@ this.contextHas(includeAncestor);  → Returns true if any ancestor was an <<inc
 
 Returns the first of the macro's ancestors that passed the test implemented by the given filter function or `null`, if no members pass.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters:
 
@@ -184,9 +184,9 @@ this.contextSelect(includeAncestor);  → Returns the first <<include>> macro an
 
 Returns a new array containing all of the macro's ancestors that passed the test implemented by the given filter function or an empty array, if no members pass.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters:
 
@@ -213,9 +213,9 @@ All of the specified callbacks are invoked as the wrapper is invoked—meaning, 
 Only useful when you have an asynchronous callback that invokes code/content that needs to access story and/or temporary variables shadowed by <code>&lt;&lt;capture&gt;&gt;</code>.  If you don't know what that means, then this API is likely not for you.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.14.0`: Basic syntax.
+* `v2.14.0`: Introduced.
 * `v2.23.3`: Fixed an issue where shadows would fail for multiple layers of nested asynchronous code due to loss of context.
 
 #### Parameters:
@@ -269,9 +269,9 @@ $someElement.on('some_event', this.createShadowWrapper(
 
 Renders the message prefixed with the name of the macro and returns `false`.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters:
 

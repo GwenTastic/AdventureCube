@@ -26,8 +26,10 @@ var Config = (() => { // eslint-disable-line no-unused-vars, no-var
 	let _historyMaxStates = 100;
 
 	// Macros settings.
-	let _macrosIfAssignmentError = true;
-	let _macrosMaxLoopIterations = 1000;
+	let _macrosIfAssignmentError   = true;
+	let _macrosMaxLoopIterations   = 1000;
+	let _macrosTypeSkipKey         = '\x20'; // Space
+	let _macrosTypeVisitedPassages = true;
 
 	// Navigation settings.
 	let _navigationOverride;
@@ -43,11 +45,12 @@ var Config = (() => { // eslint-disable-line no-unused-vars, no-var
 	// Saves settings.
 	let _savesAutoload;
 	let _savesAutosave;
-	let _savesId        = 'untitled-story';
+	let _savesId              = 'untitled-story';
 	let _savesIsAllowed;
 	let _savesOnLoad;
 	let _savesOnSave;
-	let _savesSlots     = 8;
+	let _savesSlots           = 8;
+	let _savesTryDiskOnMobile = true;
 	let _savesVersion;
 
 	// UI settings.
@@ -153,7 +156,13 @@ var Config = (() => { // eslint-disable-line no-unused-vars, no-var
 				}
 
 				_macrosMaxLoopIterations = value;
-			}
+			},
+
+			get typeSkipKey() { return _macrosTypeSkipKey; },
+			set typeSkipKey(value) { _macrosTypeSkipKey = String(value); },
+
+			get typeVisitedPassages() { return _macrosTypeVisitedPassages; },
+			set typeVisitedPassages(value) { _macrosTypeVisitedPassages = Boolean(value); }
 		}),
 
 		/*
@@ -325,6 +334,9 @@ var Config = (() => { // eslint-disable-line no-unused-vars, no-var
 
 				_savesSlots = value;
 			},
+
+			get tryDiskOnMobile() { return _savesTryDiskOnMobile; },
+			set tryDiskOnMobile(value) { _savesTryDiskOnMobile = Boolean(value); },
 
 			get version() { return _savesVersion; },
 			set version(value) { _savesVersion = value; }

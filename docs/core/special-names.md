@@ -22,9 +22,9 @@ Passage, tag, and variable names that have special meaning to SugarCube.
 
 Used for post-passage-display tasks, like redoing dynamic changes (happens after the rendering and display of each passage).  Roughly equivalent to the [`:passagedisplay` event](#events-navigation-event-passagedisplay).
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -32,9 +32,9 @@ Used for post-passage-display tasks, like redoing dynamic changes (happens after
 
 Appended to each rendered passage.  Roughly equivalent to the [`:passagerender` event](#events-navigation-event-passagerender).
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -42,9 +42,9 @@ Appended to each rendered passage.  Roughly equivalent to the [`:passagerender` 
 
 Prepended to each rendered passage.  Roughly equivalent to the [`:passagestart` event](#events-navigation-event-passagestart).
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -52,9 +52,9 @@ Prepended to each rendered passage.  Roughly equivalent to the [`:passagestart` 
 
 Used for pre-passage-display tasks, like redoing dynamic changes (happens before the rendering of each passage).  Roughly equivalent to the [`:passagestart` event](#events-navigation-event-passagestart).
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -64,9 +64,9 @@ Used for pre-passage-display tasks, like redoing dynamic changes (happens before
 
 **Twine&nbsp;1/Twee:**  *Required.*  The starting passage, the first passage displayed.  Configurable, see [`Config.passages.start`](#config-api-property-passages-start) for more information.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -74,9 +74,9 @@ Used for pre-passage-display tasks, like redoing dynamic changes (happens before
 
 Used to populate the authorial byline area in the UI bar (element ID: `story-author`).
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -84,9 +84,9 @@ Used to populate the authorial byline area in the UI bar (element ID: `story-aut
 
 Used to populate the story's banner area in the UI bar (element ID: `story-banner`).
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -94,9 +94,9 @@ Used to populate the story's banner area in the UI bar (element ID: `story-banne
 
 Used to populate the story's caption area in the UI bar (element ID: `story-caption`).  May also be, and often is, used to add additional story UI elements and content to the UI bar.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -104,9 +104,9 @@ Used to populate the story's caption area in the UI bar (element ID: `story-capt
 
 Sets the story's display title in the browser's titlebar and the UI bar (element ID: `story-title`).  If omitted, the story title will be used instead.
 
-#### Since:
+#### History:
 
-* `v2.31.0`
+* `v2.31.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -114,9 +114,9 @@ Sets the story's display title in the browser's titlebar and the UI bar (element
 
 Used for pre-story-start initialization tasks, like variable initialization (happens at the beginning of story initialization).
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -128,9 +128,9 @@ Used to replace SugarCube's default UI.  Its contents are treated as raw HTML ma
 Elements that include a <code>data-passage</code> content attribute <em>should not</em> themselves contain additional elements—since such elements' contents are replaced each turn via their associated passage, any child elements would be lost.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.18.0`: Basic syntax.
+* `v2.18.0`: Introduced.
 * `v2.28.0`: Added processing of the `data-passage` content attribute.
 
 #### Examples:
@@ -161,9 +161,9 @@ Used to populate the story's menu items in the UI bar (element ID: `menu-story`)
 The story menu only displays links—specifically, anything that creates an anchor element (<code>&lt;a&gt;</code>).  While it renders content just as any other passage does, instead of displaying the rendered output as-is, it sifts through the output and builds its menu from the generated links contained therein.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Examples:
 
@@ -190,9 +190,9 @@ Used to populate the contents of the Share dialog.  Intended for social media li
 The Share dialog only displays links—specifically, anything that creates an anchor element (<code>&lt;a&gt;</code>).  While it renders content just as any other passage does, instead of displaying the rendered output as-is, it sifts through the output and builds its contents from the generated links contained therein.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -200,9 +200,9 @@ The Share dialog only displays links—specifically, anything that creates an an
 
 Sets the story's subtitle in the UI bar (element ID: `story-subtitle`).
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -220,9 +220,9 @@ If you want to set a title for display that contains code, markup, or macros, se
 
 **Twine&nbsp;1/Twee:**  *Required.*  Sets the story's title.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 
 <!-- ***************************************************************************
@@ -236,9 +236,9 @@ If you want to set a title for display that contains code, markup, or macros, se
 
 Registers the passage into the *Jump To* menu.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -250,9 +250,9 @@ Causes leading/trailing newlines to be removed and all remaining sequences of ne
 Does not affect <code>script</code> or <code>stylesheet</code> tagged passages, for Twine&nbsp;1/Twee.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -262,9 +262,9 @@ Does not affect <code>script</code> or <code>stylesheet</code> tagged passages, 
 
 **Twine&nbsp;1/Twee:**  Registers the passage as JavaScript code, which is executed during startup.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -274,9 +274,9 @@ Does not affect <code>script</code> or <code>stylesheet</code> tagged passages, 
 
 **Twine&nbsp;1/Twee:**  Registers the passage as a CSS stylesheet, which is loaded during startup.  It is ***strongly*** recommended that you use only one stylesheet passage.  Additionally, see the [tagged stylesheet warning](#css-warnings).
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -284,9 +284,9 @@ Does not affect <code>script</code> or <code>stylesheet</code> tagged passages, 
 
 Registers the passage as an audio passage.  See [Guide: Media Passages](#guide-media-passages) for more information.
 
-#### Since:
+#### History:
 
-* `v2.24.0`
+* `v2.24.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -294,9 +294,9 @@ Registers the passage as an audio passage.  See [Guide: Media Passages](#guide-m
 
 Registers the passage as an image passage.  See [Guide: Media Passages](#guide-media-passages) for more information.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -304,9 +304,9 @@ Registers the passage as an image passage.  See [Guide: Media Passages](#guide-m
 
 Registers the passage as a video passage.  See [Guide: Media Passages](#guide-media-passages) for more information.
 
-#### Since:
+#### History:
 
-* `v2.24.0`
+* `v2.24.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -314,9 +314,9 @@ Registers the passage as a video passage.  See [Guide: Media Passages](#guide-me
 
 Registers the passage as a <abbr title="Video Text Track">VTT</abbr> passage.  See [Guide: Media Passages](#guide-media-passages) for more information.
 
-#### Since:
+#### History:
 
-* `v2.24.0`
+* `v2.24.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -324,9 +324,9 @@ Registers the passage as a <abbr title="Video Text Track">VTT</abbr> passage.  S
 
 Registers the passage as [`<<widget>>` macro](#macros-macro-widget) definitions, which are loaded during startup.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 
 <!-- ***************************************************************************
@@ -340,9 +340,9 @@ Registers the passage as [`<<widget>>` macro](#macros-macro-widget) definitions,
 
 Alias for `jQuery`, by default.  **NOTE:** This should not be confused with [story variables](#twinescript-variables), which start with a `$`—e.g., `$foo`.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -350,9 +350,9 @@ Alias for `jQuery`, by default.  **NOTE:** This should not be confused with [sto
 
 Widget arguments array (only inside widgets).  See [`<<widget>>`](#macros-macro-widget) for more information.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -360,9 +360,9 @@ Widget arguments array (only inside widgets).  See [`<<widget>>`](#macros-macro-
 
 Configuration API.  See [`Config` API](#config-api) for more information.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -370,9 +370,9 @@ Configuration API.  See [`Config` API](#config-api) for more information.
 
 Dialog API.  See [`Dialog` API](#dialog-api) for more information.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -380,9 +380,9 @@ Dialog API.  See [`Dialog` API](#dialog-api) for more information.
 
 Engine API.  See [`Engine` API](#engine-api) for more information.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -390,9 +390,9 @@ Engine API.  See [`Engine` API](#engine-api) for more information.
 
 Fullscreen API.  See [`Fullscreen` API](#fullscreen-api) for more information.
 
-#### Since:
+#### History:
 
-* `v2.31.0`
+* `v2.31.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -400,9 +400,9 @@ Fullscreen API.  See [`Fullscreen` API](#fullscreen-api) for more information.
 
 jQuery library function.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -410,9 +410,9 @@ jQuery library function.
 
 Strings localization object.  See [Localization](#guide-localization) for more information.
 
-#### Since:
+#### History:
 
-* `v2.10.0`
+* `v2.10.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -420,9 +420,9 @@ Strings localization object.  See [Localization](#guide-localization) for more i
 
 LoadScreen API.  See [`LoadScreen` API](#loadscreen-api) for more information.
 
-#### Since:
+#### History:
 
-* `v2.15.0`
+* `v2.15.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -430,9 +430,9 @@ LoadScreen API.  See [`LoadScreen` API](#loadscreen-api) for more information.
 
 Macro API.  See [`Macro` API](#macro-api) for more information.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -440,59 +440,9 @@ Macro API.  See [`Macro` API](#macro-api) for more information.
 
 Passage API.  See [`Passage` API](#passage-api) for more information.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
-
-<!-- *********************************************************************** -->
-
-### `postdisplay` {#special-variable-postdisplay}
-
-Post-display task callback object, set up by the author/developer.  See [navigation tasks](#navigation-tasks) for more information.
-
-#### Since:
-
-* `v2.0.0`
-
-<!-- *********************************************************************** -->
-
-### `postrender` {#special-variable-postrender}
-
-Post-render task callback object, set up by the author/developer.  See [navigation tasks](#navigation-tasks) for more information.
-
-#### Since:
-
-* `v2.0.0`
-
-<!-- *********************************************************************** -->
-
-### `predisplay` {#special-variable-predisplay}
-
-Pre-display task callback object, set up by the author/developer.  See [navigation tasks](#navigation-tasks) for more information.
-
-#### Since:
-
-* `v2.0.0`
-
-<!-- *********************************************************************** -->
-
-### `prehistory` {#special-variable-prehistory}
-
-Pre-history task callback object, set up by the author/developer.  See [navigation tasks](#navigation-tasks) for more information.
-
-#### Since:
-
-* `v2.0.0`
-
-<!-- *********************************************************************** -->
-
-### `prerender` {#special-variable-prerender}
-
-Pre-render task callback object, set up by the author/developer.  See [navigation tasks](#navigation-tasks) for more information.
-
-#### Since:
-
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -500,9 +450,9 @@ Pre-render task callback object, set up by the author/developer.  See [navigatio
 
 Save API.  See [`Save` API](#save-api) for more information.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -510,9 +460,9 @@ Save API.  See [`Save` API](#save-api) for more information.
 
 Setting API.  See [`Setting` API](#setting-api) for more information.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -520,18 +470,18 @@ Setting API.  See [`Setting` API](#setting-api) for more information.
 
 Player settings object, set up by the author/developer.  See [`Setting` API](#setting-api) for more information.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 <!-- *********************************************************************** -->
 
 ### `setup` {#special-variable-setup}
 
 Object that authors/developers may use to set up various bits of static data.  Generally, you would use this for data that does not change and should not be stored within story variables, which would make it part of the history.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -539,9 +489,9 @@ Object that authors/developers may use to set up various bits of static data.  G
 
 SimpleAudio API.  See [`SimpleAudio` API](#simpleaudio-api) for more information.
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -549,9 +499,9 @@ SimpleAudio API.  See [`SimpleAudio` API](#simpleaudio-api) for more information
 
 State API.  See [`State` API](#state-api) for more information.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -559,9 +509,9 @@ State API.  See [`State` API](#state-api) for more information.
 
 Story API.  See [`Story` API](#story-api) for more information.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -569,9 +519,9 @@ Story API.  See [`Story` API](#story-api) for more information.
 
 Template API.  See [`Template` API](#template-api) for more information.
 
-#### Since:
+#### History:
 
-* `v2.29.0`
+* `v2.29.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -579,9 +529,9 @@ Template API.  See [`Template` API](#template-api) for more information.
 
 UI API.  See [`UI` API](#ui-api) for more information.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -589,6 +539,71 @@ UI API.  See [`UI` API](#ui-api) for more information.
 
 UIBar API.  See [`UIBar` API](#uibar-api) for more information.
 
-#### Since:
+#### History:
 
-* `v2.17.0`
+* `v2.17.0`: Introduced.
+
+<!-- *********************************************************************** -->
+
+### <span class="deprecated">`postdisplay`</span> {#special-variable-postdisplay}
+
+<p role="note" class="warning"><b>Deprecated:</b>
+<code>postdisplay</code> tasks have been deprecated and should no longer be used.  See the <a href="#events-navigation-event-passagedisplay"><code>:passagedisplay</code> event</a> for its replacement.
+</p>
+
+#### History:
+
+* `v2.0.0`: Basic support.
+* `v2.31.0`: Deprecated.
+
+<!-- *********************************************************************** -->
+
+### <span class="deprecated">`postrender`</span> {#special-variable-postrender}
+
+<p role="note" class="warning"><b>Deprecated:</b>
+<code>postrender</code> tasks have been deprecated and should no longer be used.  See the <a href="#events-navigation-event-passagerender"><code>:passagerender</code> event</a> for its replacement.
+</p>
+
+#### History:
+
+* `v2.0.0`: Basic support.
+* `v2.31.0`: Deprecated.
+
+<!-- *********************************************************************** -->
+
+### <span class="deprecated">`predisplay`</span> {#special-variable-predisplay}
+
+<p role="note" class="warning"><b>Deprecated:</b>
+<code>predisplay</code> tasks have been deprecated and should no longer be used.  See the <a href="#events-navigation-event-passagestart"><code>:passagestart</code> event</a> for its replacement.
+</p>
+
+#### History:
+
+* `v2.0.0`: Basic support.
+* `v2.31.0`: Deprecated.
+
+<!-- *********************************************************************** -->
+
+### <span class="deprecated">`prehistory`</span> {#special-variable-prehistory}
+
+<p role="note" class="warning"><b>Deprecated:</b>
+<code>prehistory</code> tasks have been deprecated and should no longer be used.  See the <a href="#events-navigation-event-passageinit"><code>:passageinit</code> event</a> for its replacement.
+</p>
+
+#### History:
+
+* `v2.0.0`: Basic support.
+* `v2.31.0`: Deprecated.
+
+<!-- *********************************************************************** -->
+
+### <span class="deprecated">`prerender`</span> {#special-variable-prerender}
+
+<p role="note" class="warning"><b>Deprecated:</b>
+<code>prerender</code> tasks have been deprecated and should no longer be used.  See the <a href="#events-navigation-event-passagestart"><code>:passagestart</code> event</a> for its replacement.
+</p>
+
+#### History:
+
+* `v2.0.0`: Basic support.
+* `v2.31.0`: Deprecated.

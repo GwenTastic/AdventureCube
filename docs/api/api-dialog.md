@@ -13,9 +13,9 @@ Appends the given content to the dialog's content area.  Returns a reference to 
 If your content contains any SugarCube markup, you'll need to use the <a href="#dialog-api-method-wiki"><code>Dialog.wiki()</code> method</a> instead.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.9.0`
+* `v2.9.0`: Introduced.
 
 #### Parameters:
 
@@ -35,9 +35,9 @@ Dialog.append( /* some DOM nodes */ );
 
 Returns a reference to the dialog's content area.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -55,9 +55,9 @@ jQuery(Dialog.body()).wiki("Cry 'Havoc!', and let slip the //ponies// of ''frien
 
 Closes the dialog.  Returns a reference to the `Dialog` object for chaining.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -73,9 +73,9 @@ Dialog.close();
 
 Returns whether the dialog is currently open.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters:
 
@@ -103,9 +103,9 @@ Opens the dialog.  Returns a reference to the `Dialog` object for chaining.
 Call this only after populating the dialog with content.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters:
 
@@ -117,7 +117,6 @@ Call this only after populating the dialog with content.
 An options object should have some of the following properties:
 
 * **`top`:** Top y-coordinate of the dialog (default: `50`; in pixels, but without the unit).
-* **`opacity`:** Opacity of the overlay (default: `0.8`).
 
 #### Examples:
 
@@ -131,9 +130,9 @@ Dialog.open();
 
 Prepares the dialog for use and returns a reference to its content area.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters:
 
@@ -169,9 +168,9 @@ Renders the given [markup](#markup) and appends it to the dialog's content area.
 If your content consists of DOM nodes, you'll need to use the <a href="#dialog-api-method-append"><code>Dialog.append()</code> method</a> instead.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.9.0`
+* `v2.9.0`: Introduced.
 
 #### Parameters:
 
@@ -191,7 +190,7 @@ Dialog.wiki("Cry 'Havoc!', and let slip the //ponies// of ''friendship''.");
 This method has been deprecated and should no longer be used.  The core of what it does is simply to wrap a call to <a href="#dialog-api-method-open"><code>Dialog.open()</code></a> within a call to <a href="#methods-jquery-prototype-method-ariaclick"><code>&lt;jQuery&gt;.ariaClick()</code></a>, which can be done directly and with greater flexibility.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.0.0`: Basic syntax.
+* `v2.0.0`: Introduced.
 * `v2.29.0`: Deprecated.

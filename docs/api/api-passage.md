@@ -13,9 +13,9 @@ All properties of `Passage` objects should be treated as if they were ***read-on
 
 The DOM ID of the passage, created from the slugified passage title.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -23,9 +23,9 @@ The DOM ID of the passage, created from the slugified passage title.
 
 The tags of the passage.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -33,9 +33,9 @@ The tags of the passage.
 
 The raw text of the passage.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -43,9 +43,9 @@ The raw text of the passage.
 
 The title of the passage.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -53,9 +53,9 @@ The title of the passage.
 
 Returns the description of the passage, created from either an excerpt of the passage or the [`Config.passages.descriptions` setting](#config-api-property-passages-descriptions).
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -73,9 +73,9 @@ passage.description()  → Returns the description of "The Ducky" passage
 
 Returns the processed text of the passage, created from applying `nobr` tag and image passage processing to its raw text.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters: *none*
 

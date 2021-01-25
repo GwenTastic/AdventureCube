@@ -10,7 +10,7 @@ For more information see:
 * [MDN's JavaScript reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference) for native JavaScript object methods—and more.
 * [jQuery API reference](https://api.jquery.com/) for native jQuery methods.
 
-Additionally.  SugarCube includes polyfills for virtually all JavaScript (ECMAScript) 5 &amp; 6 native object methods, so they may be safely used even if your project will be used in older browsers that do not natively support them.
+Additionally.  SugarCube includes polyfills for virtually all JavaScript (ECMAScript) 5 &amp; 6 native object methods—via the [es5-shim](https://github.com/es-shims/es5-shim/) and [es6-shim](https://github.com/paulmillr/es6-shim/) polyfill libraries (shims only, no shams)—so they may be safely used even if your project will be played in ancient browsers that do not natively support them.
 
 
 <!-- ***************************************************************************
@@ -24,7 +24,7 @@ Additionally.  SugarCube includes polyfills for virtually all JavaScript (ECMASc
 
 Concatenates one or more members to the end of the base array and returns the result as a new array.  Does not modify the original.
 
-#### Since: *native JavaScript method*
+#### History: *native JavaScript method*
 
 #### Parameters:
 
@@ -47,9 +47,9 @@ $fruits1.concat($fruits2, "Pears")   → Returns ["Apples", "Oranges", "Pears", 
 
 Concatenates one or more unique members to the end of the base array and returns the result as a new array.  Does not modify the original.
 
-#### Since:
+#### History:
 
-* `v2.21.0`
+* `v2.21.0`: Introduced.
 
 #### Parameters:
 
@@ -72,9 +72,9 @@ $fruits1.concatUnique($fruits2, "Pears")   → Returns ["Apples", "Oranges", "Pe
 
 Returns the number of times that the given member was found within the array, starting the search at `position`.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters:
 
@@ -95,9 +95,9 @@ $fruits.count("Oranges", 2)  → Returns 1
 
 Removes all instances of the given members from the array and returns a new array containing the removed members.
 
-#### Since:
+#### History:
 
-* `v2.5.0`
+* `v2.5.0`: Introduced.
 
 #### Parameters:
 
@@ -117,9 +117,9 @@ $fruits.delete("Apples", "Plums")  → Returns ["Apples", "Plums"]; $fruits ["Or
 
 Removes all of the members at the given indices from the array and returns a new array containing the removed members.
 
-#### Since:
+#### History:
 
-* `v2.5.0`
+* `v2.5.0`: Introduced.
 
 #### Parameters:
 
@@ -140,9 +140,9 @@ $fruits.deleteAt(0, 2)  → Returns ["Apples", "Plums"]; $fruits ["Oranges", "Or
 
 Removes all of the members that pass the test implemented by the given predicate function from the array and returns a new array containing the removed members.
 
-#### Since:
+#### History:
 
-* `v2.25.0`
+* `v2.25.0`: Introduced.
 
 #### Parameters:
 
@@ -186,9 +186,9 @@ $fruits.deleteWith(function (val) {
 
 Returns the first member from the array.  Does not modify the original.
 
-#### Since:
+#### History:
 
-* `v2.27.0`
+* `v2.27.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -205,7 +205,7 @@ $pies.first()  → Returns "Blueberry"
 
 Returns a new array consisting of the source array with all sub-array elements concatenated into it recursively up to the given depth.  Does not modify the original.
 
-#### Since: *native JavaScript method*
+#### History: *native JavaScript method*
 
 #### Parameters:
 
@@ -231,7 +231,7 @@ Returns a new array consisting of the result of calling the given mapping functi
 Identical to calling <code>&lt;Array&gt;.map(…).flat()</code>.
 </p>
 
-#### Since: *native JavaScript method*
+#### History: *native JavaScript method*
 
 #### Parameters:
 
@@ -258,7 +258,7 @@ $npa.flatMap(function (val) {
 
 Returns whether the given member was found within the array, starting the search at `position`.
 
-#### Since: *native JavaScript method*
+#### History: *native JavaScript method*
 
 #### Parameters:
 
@@ -279,9 +279,9 @@ Returns whether the given member was found within the array, starting the search
 
 Returns whether all of the given members were found within the array.
 
-#### Since:
+#### History:
 
-* `v2.10.0`
+* `v2.10.0`: Introduced.
 
 #### Parameters:
 
@@ -303,9 +303,9 @@ Returns whether all of the given members were found within the array.
 
 Returns whether any of the given members were found within the array.
 
-#### Since:
+#### History:
 
-* `v2.10.0`
+* `v2.10.0`: Introduced.
 
 #### Parameters:
 
@@ -327,9 +327,9 @@ Returns whether any of the given members were found within the array.
 
 Returns the last member from the array.  Does not modify the original.
 
-#### Since:
+#### History:
 
-* `v2.27.0`
+* `v2.27.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -344,11 +344,11 @@ $pies.last()  → Returns "Pumpkin"
 
 ### `<Array>.pluck()` → *any* {#methods-array-prototype-method-pluck}
 
-Removes and returns a random member from the array.
+Removes and returns a random member from the base array.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -365,13 +365,13 @@ $pies.pluck()  → Removes and returns a random pie from the array
 
 Randomly removes the given number of members from the base array and returns the removed members as a new array.
 
-#### Since:
+#### History:
 
-* `v2.20.0`
+* `v2.20.0`: Introduced.
 
 #### Parameters:
 
-* **`want`:** (optional, *integer*) The number of members to pluck.
+* **`want`:** (optional, *integer*) The number of members to pluck.  Cannot pluck more members than the base array contains.
 
 #### Examples:
 
@@ -386,7 +386,7 @@ $pies.pluckMany(3)  → Removes three random pies from the array and returns the
 
 Removes and returns the last member from the array, or `undefined` if the array is empty.
 
-#### Since: *native JavaScript method*
+#### History: *native JavaScript method*
 
 #### Parameters: *none*
 
@@ -403,7 +403,7 @@ $fruits.pop()  → Returns "Pears"; $fruits ["Apples", "Oranges"]
 
 Appends one or more members to the end of the base array and returns its new length.
 
-#### Since: *native JavaScript method*
+#### History: *native JavaScript method*
 
 #### Parameters:
 
@@ -425,9 +425,9 @@ $fruits.push("Plums", "Plums")  → Returns 4; $fruits ["Apples", "Oranges", "Pl
 
 Appends one or more unique members to the end of the base array and returns its new length.
 
-#### Since:
+#### History:
 
-* `v2.21.0`
+* `v2.21.0`: Introduced.
 
 #### Parameters:
 
@@ -447,11 +447,11 @@ $fruits.pushUnique("Plums", "Plums")  → Returns 3; $fruits ["Apples", "Oranges
 
 ### `<Array>.random()` → *any* {#methods-array-prototype-method-random}
 
-Returns a random member from the array.  Does not modify the original.
+Returns a random member from the base array.  Does not modify the original.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -466,15 +466,15 @@ $pies.random()  → Returns a random pie from the array
 
 ### `<Array>.randomMany(want)` → *array* {#methods-array-prototype-method-randommany}
 
-Randomly selects the given number of unique members from the array and returns the selected members as a new array.  Does not modify the original.
+Randomly selects the given number of unique members from the base array and returns the selected members as a new array.  Does not modify the original.
 
-#### Since:
+#### History:
 
-* `v2.20.0`
+* `v2.20.0`: Introduced.
 
 #### Parameters:
 
-* **`want`:** (optional, *integer*) The number of members to select.
+* **`want`:** (optional, *integer*) The number of members to select.  Cannot select more members than the base array contains.
 
 #### Examples:
 
@@ -489,7 +489,7 @@ $pies.randomMany(3)  → Returns a new array containing three unique random pies
 
 Removes and returns the first member from the array, or `undefined` if the array is empty.
 
-#### Since: *native JavaScript method*
+#### History: *native JavaScript method*
 
 #### Parameters: *none*
 
@@ -506,9 +506,9 @@ $fruits.shift()  → Returns "Apples"; $fruits ["Oranges", "Pears"]
 
 Randomly shuffles the array.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -525,7 +525,7 @@ $pies.shuffle()  → Randomizes the order of the pies in the array
 
 Prepends one or more members to the beginning of the base array and returns its new length.
 
-#### Since: *native JavaScript method*
+#### History: *native JavaScript method*
 
 #### Parameters:
 
@@ -547,9 +547,9 @@ $fruits.unshift("Apples", "Apples")  → Returns 4; $fruits ["Apples", "Apples",
 
 Prepends one or more unique members to the beginning of the base array and returns its new length.
 
-#### Since:
+#### History:
 
-* `v2.21.0`
+* `v2.21.0`: Introduced.
 
 #### Parameters:
 
@@ -573,9 +573,9 @@ $fruits.unshiftUnique("Apples", "Apples")  → Returns 3; $fruits ["Apples", "Or
 This method has been deprecated and should no longer be used.  See the <a href="#methods-array-prototype-method-includes"><code>&lt;Array&gt;.includes()</code></a> method for its replacement.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.0.0`: Basic syntax.
+* `v2.0.0`: Introduced.
 * `v2.10.0`: Deprecated in favor of `<Array>.includes()`.
 
 <!-- *********************************************************************** -->
@@ -586,9 +586,9 @@ This method has been deprecated and should no longer be used.  See the <a href="
 This method has been deprecated and should no longer be used.  See the <a href="#methods-array-prototype-method-includesall"><code>&lt;Array&gt;.includesAll()</code></a> method for its replacement.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.0.0`: Basic syntax.
+* `v2.0.0`: Introduced.
 * `v2.10.0`: Deprecated in favor of `<Array>.includesAll()`.
 
 <!-- *********************************************************************** -->
@@ -599,9 +599,9 @@ This method has been deprecated and should no longer be used.  See the <a href="
 This method has been deprecated and should no longer be used.  See the <a href="#methods-array-prototype-method-includesany"><code>&lt;Array&gt;.includesAny()</code></a> method for its replacement.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.0.0`: Basic syntax.
+* `v2.0.0`: Introduced.
 * `v2.10.0`: Deprecated in favor of `<Array>.includesAny()`.
 
 <!-- *********************************************************************** -->
@@ -614,9 +614,9 @@ This method has been deprecated and should no longer be used.  See the <a href="
 
 Returns a new array consisting of the flattened source array.  Does not modify the original.
 
-#### Since:
+#### History:
 
-* `v2.0.0`: Basic syntax.
+* `v2.0.0`: Introduced.
 * `v2.29.0`: Deprecated in favor of `<Array>.flat()`.
 
 
@@ -630,9 +630,9 @@ This method has been deprecated and should no longer be used.  In general, look 
 
 Returns a random member from the array or array-like object.  Does not modify the original.
 
-#### Since:
+#### History:
 
-* `v2.0.0`: Basic syntax.
+* `v2.0.0`: Introduced.
 * `v2.20.0`: Deprecated.
 
 
@@ -651,9 +651,9 @@ Returns the given code string, and optional data chunk, wrapped within the JSON 
 The <a href="#guide-tips-non-generic-object-types"><em>Non-generic object types (a.k.a. classes)</em> guide</a> for more detailed information.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.0.0`: Basic syntax.
+* `v2.0.0`: Introduced.
 * `v2.9.0`: Added `reviveData` parameter.
 
 #### Parameters:
@@ -687,9 +687,9 @@ return JSON.reviveWrapper('new Character($ReviveData$)', ownData);
 
 Makes the target element(s) WAI-ARIA-compatible clickables—meaning that various accessibility attributes are set and, in addition to mouse clicks, enter/return and spacebar key presses also activate them.  Returns a reference to the current `jQuery` object for chaining.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters:
 
@@ -751,9 +751,9 @@ Changes the disabled state of the target WAI-ARIA-compatible clickable element(s
 This method is meant to work with clickables created via <a href="#methods-jquery-prototype-method-ariaclick"><code>&lt;jQuery&gt;.ariaClick()</code></a> and may not work with clickables from other sources.  SugarCube uses <code>&lt;jQuery&gt;.ariaClick()</code> internally to handle all of its various link markup and macros.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.26.0`
+* `v2.26.0`: Introduced.
 
 #### Parameters:
 
@@ -776,9 +776,9 @@ Returns whether any of the target WAI-ARIA-compatible clickable element(s) are d
 This method is meant to work with clickables created via <a href="#methods-jquery-prototype-method-ariaclick"><code>&lt;jQuery&gt;.ariaClick()</code></a> and may not work with clickables from other sources.  SugarCube uses <code>&lt;jQuery&gt;.ariaClick()</code> internally to handle all of its various link markup and macros.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.26.0`
+* `v2.26.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -800,9 +800,9 @@ $('#so-clicky').ariaIsDisabled()  → Returns false
 
 Wikifies the given content source(s) and discards the result.  If there were errors, an exception is thrown.  This is only really useful when you want to invoke a macro for its side-effects and aren't interested in its output.
 
-#### Since:
+#### History:
 
-* `v2.17.0`
+* `v2.17.0`: Introduced.
 
 #### Parameters:
 
@@ -820,9 +820,9 @@ $.wiki('<<somemacro>>');  → Invokes the <<somemacro>> macro, discarding any ou
 
 Wikifies the given content source(s) and appends the result to the target element(s).  Returns a reference to the current `jQuery` object for chaining.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters:
 
@@ -847,15 +847,15 @@ $('#the-box').wiki('Who //are// you?');  → Appends "Who <em>are</em> you?" to 
 
 Returns the given number clamped to the specified bounds.  Does not modify the original.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters:
 
 * **`num`:** (*number*) The number to clamp.  May be an actual number or a numerical string.
-* **`min`:** (*integer*) The lower bound of the number.
-* **`max`:** (*integer*) The upper bound of the number.
+* **`min`:** (*number*) The lower bound of the number.
+* **`max`:** (*number*) The upper bound of the number.
 
 #### Examples:
 
@@ -870,7 +870,7 @@ Math.clamp($stat, 1, 6.6)  → Clamps $stat to the bounds 1–6.6 and returns th
 
 Returns the whole (integer) part of the given number by removing its fractional part, if any.  Does not modify the original.
 
-#### Since: *native JavaScript method*
+#### History: *native JavaScript method*
 
 #### Parameters:
 
@@ -895,14 +895,14 @@ Math.trunc(-12.7)  → Returns -12
 
 Returns the number clamped to the specified bounds.  Does not modify the original.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters:
 
-* **`min`:** (*integer*) The lower bound of the number.
-* **`max`:** (*integer*) The upper bound of the number.
+* **`min`:** (*number*) The lower bound of the number.
+* **`max`:** (*number*) The upper bound of the number.
 
 #### Examples:
 
@@ -923,9 +923,9 @@ $stat.clamp(1, 6.6)  → Clamps $stat to the bounds 1–6.6 and returns the new 
 
 Returns the given string with all regular expression metacharacters escaped.  Does not modify the original.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters:
 
@@ -954,9 +954,9 @@ Strings in TwineScript/JavaScript are Unicode, however, due to historic reasons 
 
 Returns the number of times that the given substring was found within the string, starting the search at `position`.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters:
 
@@ -981,9 +981,9 @@ Returns the first Unicode code point within the string.  Does not modify the ori
 <a href="#methods-string-note">String methods note</a>.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.27.0`
+* `v2.27.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -1003,9 +1003,9 @@ $text.first()  → Returns "🙈"
 
 Returns a formatted string, after replacing each format item in the given format string with the text equivalent of the corresponding argument's value.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters:
 
@@ -1034,7 +1034,7 @@ String.format("{0,-6}", "foo")                    → Returns "foo   "
 
 Returns whether the given substring was found within the string, starting the search at `position`.
 
-#### Since: *native JavaScript method*
+#### History: *native JavaScript method*
 
 #### Parameters:
 
@@ -1061,9 +1061,9 @@ Returns the last Unicode code point within the string.  Does not modify the orig
 <a href="#methods-string-note">String methods note</a>.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.27.0`
+* `v2.27.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -1087,9 +1087,9 @@ Returns the string with its first Unicode code point converted to upper case, ac
 <a href="#methods-string-note">String methods note</a>.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.9.0`
+* `v2.9.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -1113,9 +1113,9 @@ Returns the string with its first Unicode code point converted to upper case.  D
 <a href="#methods-string-note">String methods note</a>.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.9.0`
+* `v2.9.0`: Introduced.
 
 #### Parameters: *none*
 

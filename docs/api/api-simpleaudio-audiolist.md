@@ -15,9 +15,9 @@ Audio lists (playlists) are useful for playing tracks in a sequence—i.e., one 
 
 Returns the playlist's total playtime in seconds, `Infinity` if it contains any streams, or `NaN` if no metadata exists.
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -33,9 +33,13 @@ var listLength = aList.duration();
 
 Starts playback of the playlist and fades the currently playing track between the specified starting and destination volume levels over the specified number of seconds.
 
-#### Since:
+<p role="note"><b>Note:</b>
+The <a href="#config-api-property-audio-pauseonfadetozero"><code>Config.audio.pauseOnFadeToZero</code> setting</a> (default: <code>true</code>) determines whether the audio subsystem automatically pauses tracks that have been faded to <code>0</code> volume (silent).
+</p>
 
-* `v2.28.0`: Basic syntax.
+#### History:
+
+* `v2.28.0`: Introduced.
 * `v2.29.0`: Updated to return a `Promise`.
 
 #### Parameters:
@@ -57,9 +61,9 @@ aList.fade(6, 1, 0);
 
 Starts playback of the playlist and fades the currently playing track from the specified volume level to `1` (loudest) over the specified number of seconds.
 
-#### Since:
+#### History:
 
-* `v2.28.0`: Basic syntax.
+* `v2.28.0`: Introduced.
 * `v2.29.0`: Updated to return a `Promise`.
 
 #### Parameters:
@@ -80,9 +84,13 @@ aList.fadeIn(5, 0);
 
 Starts playback of the playlist and fades the currently playing track from the specified volume level to `0` (silent) over the specified number of seconds.
 
-#### Since:
+<p role="note"><b>Note:</b>
+The <a href="#config-api-property-audio-pauseonfadetozero"><code>Config.audio.pauseOnFadeToZero</code> setting</a> (default: <code>true</code>) determines whether the audio subsystem automatically pauses tracks that have been faded to <code>0</code> volume (silent).
+</p>
 
-* `v2.28.0`: Basic syntax.
+#### History:
+
+* `v2.28.0`: Introduced.
 * `v2.29.0`: Updated to return a `Promise`.
 
 #### Parameters:
@@ -107,9 +115,9 @@ Interrupts an in-progress fade of the currently playing track, or does nothing i
 This does not alter the volume level.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.29.0`
+* `v2.29.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -125,9 +133,9 @@ aList.fadeStop();
 
 Returns whether playback of the playlist has ended.
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -145,9 +153,9 @@ if (aList.isEnded()) {
 
 Returns whether a fade is in-progress on the currently playing track.
 
-#### Since:
+#### History:
 
-* `v2.29.0`
+* `v2.29.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -165,9 +173,9 @@ if (aList.isFading()) {
 
 Returns whether playback of the playlist has been paused.
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -185,9 +193,9 @@ if (aList.isPaused()) {
 
 Returns whether the playlist is playing.
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -205,9 +213,9 @@ if (aList.isPlaying()) {
 
 Returns whether playback of the playlist has been stopped.
 
-#### Since:
+#### History:
 
-* `v2.29.0`
+* `v2.29.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -229,9 +237,9 @@ Pauses playback of the playlist and, if they're not already in the process of lo
 This <em>should not</em> be done lightly if your audio sources are on the network, as it forces players to begin downloading them.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -247,9 +255,9 @@ aList.load();
 
 Gets or sets the playlist's repeating playback state (default: `false`).  When used to set the loop state, returns a reference to the current `AudioList` instance for chaining.
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters:
 
@@ -274,9 +282,9 @@ aList.loop(false);
 
 Gets or sets the playlist's volume mute state (default: `false`).  When used to set the mute state, returns a reference to the current `AudioList` instance for chaining.
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters:
 
@@ -301,9 +309,9 @@ aList.mute(false);
 
 Pauses playback of the playlist.
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -319,9 +327,9 @@ aList.pause();
 
 Begins playback of the playlist.
 
-#### Since:
+#### History:
 
-* `v2.28.0`: Basic syntax.
+* `v2.28.0`: Introduced.
 * `v2.29.0`: Updated to return a `Promise`.
 
 #### Parameters: *none*
@@ -352,9 +360,9 @@ aList.play()
 
 Begins playback of the playlist or, failing that, sets the playlist to begin playback as soon as the player has interacted with the document.
 
-#### Since:
+#### History:
 
-* `v2.29.0`
+* `v2.29.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -370,9 +378,9 @@ aList.playWhenAllowed();
 
 Returns how much remains of the playlist's total playtime in seconds, `Infinity` if it contains any streams, or `NaN` if no metadata exists.
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -388,9 +396,9 @@ var listRemains = aList.remaining();
 
 Gets or sets the playlist's randomly shuffled playback state (default: `false`).  When used to set the shuffle state, returns a reference to the current `AudioList` instance for chaining.
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters:
 
@@ -415,9 +423,9 @@ aList.shuffle(false);
 
 Skips ahead to the next track in the playlist, if any.
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -433,9 +441,9 @@ someTrack.skip();
 
 Stops playback of the playlist.
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -451,9 +459,9 @@ someTrack.stop();
 
 Returns the playlist's current time in seconds, or `NaN` if no metadata exists.
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -473,9 +481,9 @@ Stops playback of the playlist and forces its tracks to drop any existing data.
 Once unloaded, playback cannot occur until the track's data is loaded again.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters: *none*
 
@@ -491,9 +499,9 @@ aList.unload();
 
 Gets or sets the playlist's volume level (default: `1`).  When used to set the volume, returns a reference to the current `AudioList` instance for chaining.
 
-#### Since:
+#### History:
 
-* `v2.28.0`
+* `v2.28.0`: Introduced.
 
 #### Parameters:
 

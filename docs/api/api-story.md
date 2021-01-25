@@ -9,9 +9,9 @@
 
 The DOM ID of the story, created from the slugified story title.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -19,9 +19,9 @@ The DOM ID of the story, created from the slugified story title.
 
 The IFID (Interactive Fiction IDentifier) of the story, if any.
 
-#### Since:
+#### History:
 
-* `v2.5.0`
+* `v2.5.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -29,9 +29,9 @@ The IFID (Interactive Fiction IDentifier) of the story, if any.
 
 The title of the story.
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 <!-- *********************************************************************** -->
 
@@ -43,9 +43,9 @@ Returns the `Passage` object referenced by the given title, or an empty `Passage
 This method will not return &quot;code&quot; passages—i.e., script, stylesheet, and widget passages.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters:
 
@@ -67,9 +67,9 @@ Returns whether a `Passage` object referenced by the given title exists.
 This method will not detect &quot;code&quot; passages—i.e., script, stylesheet, and widget passages.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters:
 
@@ -91,9 +91,9 @@ Returns a new array filled with all `Passage` objects that contain the given pro
 This method will not return &quot;code&quot; passages—i.e., script, stylesheet, and widget passages.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.0.0`
+* `v2.0.0`: Introduced.
 
 #### Parameters:
 
@@ -118,9 +118,9 @@ Returns a new array filled with all `Passage` objects that pass the test impleme
 This method will not return &quot;code&quot; passages—i.e., script, stylesheet, and widget passages.
 </p>
 
-#### Since:
+#### History:
 
-* `v2.11.0`
+* `v2.11.0`: Introduced.
 
 #### Parameters:
 
