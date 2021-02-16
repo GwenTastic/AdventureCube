@@ -2,11 +2,10 @@
 
 AdventureCube is a Fork based on [SugarCube](http://www.motoslave.net/sugarcube/) which is a free (gratis and libre) StoryFormat for [Twine/Twee](http://twinery.org/).
 
-All Sugarcube Downloads and documentation as of currently are valid and can be found at [SugarCube website](http://www.motoslave.net/sugarcube/).
-
+All Sugarcube Downloads and documentation, as of now, are valid and can be found at [SugarCube website](http://www.motoslave.net/sugarcube/).
 AdventureCube specific documentation will follow as development goes on.
 
-This Fork is currently very early in Progress, and as of now is barely any different from SugarCube.
+This Fork is currently very early in Progress, and is barely any different from [SugarCube](http://www.motoslave.net/sugarcube/).
 
 
 ## BUILDING FROM SOURCE
